@@ -1,5 +1,6 @@
 using System;
 using Cysharp.Threading.Tasks;
+using ObjectPool;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
@@ -37,14 +38,17 @@ namespace Rhythm
         private bool _isBeat;
 
         private AudioSource _audioSource;
-
-        [SerializeField] private GameObject notePrefab;
+        private VFXObjectPoolProvider _vfxProvider;
+        private VFXObjectPool _vfxPool;
 
         public static bool IsAudioPlay = false;
 
         private async void Awake()
         {
             _audioSource = GetComponent<AudioSource>();
+            _vfxProvider = GetComponent<VFXObjectPoolProvider>();
+
+            _vfxPool = _vfxProvider.Get();
             
             ReadMusic();
 
@@ -99,7 +103,8 @@ namespace Rhythm
             {
                 if (_scoreBlock[_beatCount] == 0)
                 {
-                    Instantiate(notePrefab);
+                    var note = _vfxPool.Rent();
+                    note.Initialize(_vfxPool);
                 }
 
                 _beatCount++;

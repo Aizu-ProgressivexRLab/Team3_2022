@@ -1,5 +1,6 @@
 using System;
 using Cysharp.Threading.Tasks;
+using ObjectPool;
 using UnityEngine;
 using UnityEngine.VFX;
 
@@ -16,7 +17,7 @@ namespace Rhythm
         private float _lifeTime;
         private VisualEffect _vfx;
 
-        private async void Start()
+        public async void Initialize(VFXObjectPool pool)
         {
             _vfx = GetComponent<VisualEffect>();
             _vfx.SetFloat("CloseTime", closeTime);
@@ -25,7 +26,8 @@ namespace Rhythm
                 cancellationToken: this.GetCancellationTokenOnDestroy());
             
             NotesGenerator.IsAudioPlay = true;
-            GetComponent<AudioSource>().Play();
+
+            pool.Return(this);
         }
 
         private void FixedUpdate()

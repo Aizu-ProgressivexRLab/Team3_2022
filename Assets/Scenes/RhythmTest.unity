@@ -367,6 +367,7 @@ GameObject:
   - component: {fileID: 1980436309}
   - component: {fileID: 1980436308}
   - component: {fileID: 1980436310}
+  - component: {fileID: 1980436311}
   m_Layer: 0
   m_Name: NotesGenerator
   m_TagString: Untagged
@@ -386,8 +387,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6a54a516f57014197a350f1fe09384, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  notePrefab: {fileID: 6449718918138201924, guid: 46e51b6faf738864b9da801e618ec04d,
-    type: 3}
 --- !u!4 &1980436309
 Transform:
   m_ObjectHideFlags: 0
@@ -499,3 +498,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1980436311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1980436307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8170c2df1c4efd40a7e8a9cf1e24350, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: -8948463439036139793, guid: 46e51b6faf738864b9da801e618ec04d, type: 3}
