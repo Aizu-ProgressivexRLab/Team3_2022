@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 9052346299839957160}
   - component: {fileID: 8636342979962417480}
   - component: {fileID: -8948463439036139793}
+  - component: {fileID: 2951126068022034812}
   m_Layer: 0
   m_Name: RhythmNote
   m_TagString: Untagged
@@ -50,7 +51,10 @@ VisualEffect:
   m_ResourceVersion: 1
   m_PropertySheet:
     m_Float:
-      m_Array: []
+      m_Array:
+      - m_Value: 1
+        m_Name: CloseTime
+        m_Overridden: 0
     m_Vector2f:
       m_Array: []
     m_Vector3f:
@@ -124,7 +128,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   closeTime: 0.5
-  perfectRange: 0.3
-  greatRange: 0.4
-  goodRange: 0.5
-  badRange: 0.6
+  perfectRange: 0.1
+  greatRange: 0.2
+  goodRange: 0.3
+  badRange: 0.5
+--- !u!135 &2951126068022034812
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6449718918138201924}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.1
+  m_Center: {x: 0, y: 0, z: 0}
