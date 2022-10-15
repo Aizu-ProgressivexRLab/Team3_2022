@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Rhythm;
 using UnityEngine;
 
@@ -5,28 +7,30 @@ namespace ObjectPool
 {
     public class VFXObjectPoolProvider : MonoBehaviour
     {
-        public NotesController Prefab => prefab;
+        public List<VFXBase> Prefab => prefabs;
 
-        [SerializeField] private NotesController prefab;
+        [SerializeField] private List<VFXBase> prefabs;
 
-        private VFXObjectPool _objectPool;
+        private VFXObjectPool[] _objectPools = new VFXObjectPool[100];
 
-
-        public VFXObjectPool Get()
+        public VFXObjectPool Get(int i)
         {
             //すでに準備済みならそちらを返す
-            if (_objectPool != null) return _objectPool;
+            if (i < _objectPools.Length && _objectPools[i] != null) return _objectPools[i];
 
             //ObjectPoolを作成
-            _objectPool = new VFXObjectPool(prefab);
+            _objectPools[i] = new VFXObjectPool(prefabs[i]);
 
-            return _objectPool;
+            return _objectPools[i];
         }
         
         private void OnDestroy()
         {
             //すべて破棄
-            _objectPool.Dispose();
+            foreach (var op in _objectPools)
+            {
+                op?.Dispose();
+            }
         }
     }
 }

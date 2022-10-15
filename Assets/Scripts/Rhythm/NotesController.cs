@@ -9,7 +9,7 @@ using UnityEngine.VFX;
 
 namespace Rhythm
 {
-    public class NotesController : MonoBehaviour
+    public class NotesController : VFXBase
     {
         [SerializeField, Tooltip("リングが閉じるまでの時間")]
         private float closeTime;
@@ -25,9 +25,10 @@ namespace Rhythm
 
         private float _lifeTime = 0f; // 生成されてからの時間
         private VisualEffect _vfx;
-        private VFXObjectPool _pool;
+        private VFXObjectPoolProvider _poolProvider;
         private Collider _collider;
         private CancellationTokenSource _cts;
+        private VFXBase _hitVFX;
 
         /// <summary>
         /// 現在判定中のノーツ
@@ -35,14 +36,18 @@ namespace Rhythm
         public static int NowNoteNum = 0;
 
         // 出現
-        public async UniTaskVoid Initialize(VFXObjectPool pool, int beatCount)
+        public async UniTaskVoid Initialize(VFXObjectPoolProvider pool, int beatCount)
         {
             _cts = new CancellationTokenSource();
-            _pool = pool;
+            _poolProvider = pool;
             _vfx = GetComponent<VisualEffect>();
             _vfx.SetFloat("CloseTime", closeTime);
             _collider = GetComponent<Collider>();
             _lifeTime = 0;
+            if (_hitVFX != null)
+            {
+                _poolProvider.Get(1).Return(_hitVFX);   
+            }
 
             // 前のノーツが消えるまで待つ
             await UniTask.WaitUntil(() => NowNoteNum == beatCount, cancellationToken: _cts.Token);
@@ -58,6 +63,7 @@ namespace Rhythm
 
                 NotesGenerator.IsAudioPlay = true;
                 Finish();
+                return;
             }
 
             await UniTask.WaitUntil(() => _lifeTime >= closeTime + badRange, cancellationToken: _cts.Token);
@@ -94,23 +100,28 @@ namespace Rhythm
                 Debug.Log("Bad" + NowNoteNum);
             }
 
+            _hitVFX = _poolProvider.Get(1).Rent();
+            _hitVFX.transform.position = transform.position;
+
             Finish();
         }
-
+        
         /// <summary>
         /// ノーツの消滅時の処理
         /// </summary>
         private void Finish()
         {
-            _pool.Return(this);
+            _poolProvider.Get(0).Return(this);
             NowNoteNum++;
             _collider.enabled = false;
-            if (!_cts.IsCancellationRequested)
-            {
-                _cts.Cancel();
-            }
-
+            _cts.Cancel();
             _cts.Dispose();
+        }
+
+        private void OnDestroy()
+        {
+            _cts?.Cancel();
+            _cts?.Dispose();
         }
     }
 }

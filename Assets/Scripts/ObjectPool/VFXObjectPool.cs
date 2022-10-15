@@ -5,17 +5,17 @@ using UniRx.Toolkit;
 
 namespace ObjectPool
 {
-    public class VFXObjectPool : ObjectPool<NotesController>
+    public class VFXObjectPool : ObjectPool<VFXBase>
     {
         //ItemのPrefab
-        private readonly NotesController _prefab;
+        private readonly VFXBase _prefab;
     
         private readonly VFXObjectPoolProvider _provider;
     
         //ヒエラルキウィンドウ上で親となるTransform
         private readonly Transform _root;
 
-        public VFXObjectPool(NotesController prefab)
+        public VFXObjectPool(VFXBase prefab)
         {
             _prefab = prefab;
 
@@ -25,7 +25,7 @@ namespace ObjectPool
             _root.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
         }
 
-        protected override NotesController CreateInstance()
+        protected override VFXBase CreateInstance()
         {
             //インスタンスが新しく必要になったらInstantiate
             var newItem = GameObject.Instantiate(_prefab);

@@ -77,12 +77,12 @@ namespace Rhythm
             _audioSource = GetComponent<AudioSource>();
             _vfxProvider = GetComponent<VFXObjectPoolProvider>();
 
-            _spawnPos = spawnPosParent.GetComponentsInChildren<Transform>().ToList();
+            _spawnPos = spawnPosParent.GetComponentsInChildren<Transform>().Skip(1).ToList();
 
             // オブジェクトプールを生成
-            _vfxPool = _vfxProvider.Get();
-            
-            ReadMusic();
+            _vfxPool = _vfxProvider.Get(0);
+
+                ReadMusic();
 
             // スタート条件
             await UniTask.WaitUntil(() => Input.GetKeyDown(KeyCode.Space),
@@ -110,7 +110,7 @@ namespace Rhythm
             _scoreBlock = new int[inputJson.notes.Length];
             _BPM = inputJson.BPM;
             _LPB = inputJson.notes[0].LPB;
-            _offset = inputJson.offset * 0.0001f;   // Offsetの単位がわからないから大体の値
+            _offset = inputJson.offset * 0.0003f;   // Offsetの単位がわからないから大体の値
 
             for (int i = 0; i < inputJson.notes.Length; i++)
             {
@@ -143,7 +143,8 @@ namespace Rhythm
                 {
                     var note = _vfxPool.Rent();
                     note.transform.position = GetRandomPosition();
-                    note.Initialize(_vfxPool, _beatCount).Forget();
+                    ((NotesController)note).Initialize(_vfxProvider, _beatCount).Forget();
+                    //Debug.Log($"生成済みノーツ数 = {_beatCount}, 再生位置 = {_beatNum}");
                 }
                 else
                 {
@@ -157,14 +158,16 @@ namespace Rhythm
 
         private Vector3 GetRandomPosition()
         {
+            var rand = Random.Range(0, _spawnPos.Count);
             if (_prePos != null)
             {
                 _spawnPos.Add(_prePos);
             }
-            var rand = Random.Range(0, _spawnPos.Count);
-            _prePos = _spawnPos[rand];
-            _spawnPos.RemoveAt(rand);
             
+            _prePos = _spawnPos[rand];
+            
+            _spawnPos.RemoveAt(rand);
+
             return _prePos.position;
         }
     }
