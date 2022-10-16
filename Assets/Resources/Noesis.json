@@ -56,42 +56,14 @@
         {
             "LPB": 4,
             "num": 64,
-            "block": 0,
-            "type": 1,
-            "notes": []
-        },
-        {
-            "LPB": 4,
-            "num": 68,
-            "block": 0,
-            "type": 1,
-            "notes": []
-        },
-        {
-            "LPB": 4,
-            "num": 72,
-            "block": 0,
-            "type": 1,
-            "notes": []
-        },
-        {
-            "LPB": 4,
-            "num": 80,
-            "block": 0,
-            "type": 1,
-            "notes": []
-        },
-        {
-            "LPB": 4,
-            "num": 88,
-            "block": 0,
+            "block": 1,
             "type": 1,
             "notes": []
         },
         {
             "LPB": 4,
             "num": 96,
-            "block": 0,
+            "block": 1,
             "type": 1,
             "notes": []
         },

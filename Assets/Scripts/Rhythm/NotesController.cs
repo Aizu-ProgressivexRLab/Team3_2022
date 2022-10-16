@@ -9,7 +9,7 @@ using UnityEngine.VFX;
 
 namespace Rhythm
 {
-    public class NotesController : VFXBase
+    public class NotesController : VFXBase, INote
     {
         [SerializeField, Tooltip("リングが閉じるまでの時間")]
         private float closeTime;
@@ -30,13 +30,8 @@ namespace Rhythm
         private CancellationTokenSource _cts;
         private VFXBase _hitVFX;
 
-        /// <summary>
-        /// 現在判定中のノーツ
-        /// </summary>
-        public static int NowNoteNum = 0;
-
         // 出現
-        public async UniTaskVoid Initialize(VFXObjectPoolProvider pool, int beatCount)
+        public async UniTaskVoid Initialize(VFXObjectPoolProvider pool, int beatCount, float length = 1f)
         {
             _cts = new CancellationTokenSource();
             _poolProvider = pool;
@@ -50,7 +45,7 @@ namespace Rhythm
             }
 
             // 前のノーツが消えるまで待つ
-            await UniTask.WaitUntil(() => NowNoteNum == beatCount, cancellationToken: _cts.Token);
+            await UniTask.WaitUntil(() => INote.NowNoteNum == beatCount, cancellationToken: _cts.Token);
 
             _collider.enabled = true;
             this.OnTriggerEnterAsObservable()
@@ -85,19 +80,19 @@ namespace Rhythm
             var diff = Math.Abs(_lifeTime - closeTime);
             if (diff <= perfectRange)
             {
-                Debug.Log("Perfect" + NowNoteNum);
+                Debug.Log("Perfect" + INote.NowNoteNum);
             }
             else if (diff <= greatRange)
             {
-                Debug.Log("Great" + NowNoteNum);
+                Debug.Log("Great" + INote.NowNoteNum);
             }
             else if (diff <= goodRange)
             {
-                Debug.Log("Good" + NowNoteNum);
+                Debug.Log("Good" + INote.NowNoteNum);
             }
             else
             {
-                Debug.Log("Bad" + NowNoteNum);
+                Debug.Log("Bad" + INote.NowNoteNum);
             }
 
             _hitVFX = _poolProvider.Get(1).Rent();
@@ -112,7 +107,7 @@ namespace Rhythm
         private void Finish()
         {
             _poolProvider.Get(0).Return(this);
-            NowNoteNum++;
+            INote.NowNoteNum++;
             _collider.enabled = false;
             _cts.Cancel();
             _cts.Dispose();

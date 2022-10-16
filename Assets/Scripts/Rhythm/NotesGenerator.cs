@@ -146,9 +146,18 @@ namespace Rhythm
                     ((NotesController)note).Initialize(_vfxProvider, _beatCount).Forget();
                     //Debug.Log($"生成済みノーツ数 = {_beatCount}, 再生位置 = {_beatNum}");
                 }
+                else if (_scoreBlock[_beatCount] == 1)
+                {
+                    if (_scoreBlock[_beatCount - 1] != 1)
+                    {
+                        var note = _vfxProvider.Get(2).Rent();
+                        note.transform.position = GetRandomPosition();
+                        ((MashNoteController)note).Initialize(_vfxProvider, _beatCount, (_scoreNum[_beatCount + 1] - _scoreNum[_beatCount]) * 60.0f / (_BPM * _LPB)).Forget();
+                    }
+                }
                 else
                 {
-                    NotesController.NowNoteNum++;
+                    INote.NowNoteNum++;
                 }
 
                 _beatCount++;
