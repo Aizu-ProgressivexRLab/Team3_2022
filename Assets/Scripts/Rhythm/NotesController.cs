@@ -12,16 +12,20 @@ namespace Rhythm
     public class NotesController : VFXBase, INote
     {
         [SerializeField, Tooltip("リングが閉じるまでの時間")]
-        private float closeTime;
+        private float closeTime = 0.5f;
 
         [SerializeField, Tooltip("Perfectが出る範囲")]
-        private float perfectRange;
+        private float perfectRange = 0.1f;
 
         [SerializeField, Tooltip("Greatが出る範囲")]
-        private float greatRange;
+        private float greatRange = 0.2f;
 
-        [SerializeField, Tooltip("Goodが出る範囲")] private float goodRange;
-        [SerializeField, Tooltip("判定が出る範囲")] private float badRange;
+        [SerializeField, Tooltip("Goodが出る範囲")] private float goodRange = 0.3f;
+        [SerializeField, Tooltip("判定が出る範囲")] private float badRange = 0.5f;
+
+        [SerializeField] private int perfectPoint = 5;
+        [SerializeField] private int greatPoint = 4;
+        [SerializeField] private int goodPoint = 3;
 
         private float _lifeTime = 0f; // 生成されてからの時間
         private VisualEffect _vfx;
@@ -80,14 +84,17 @@ namespace Rhythm
             var diff = Math.Abs(_lifeTime - closeTime);
             if (diff <= perfectRange)
             {
+                ScoreManager.Instance.Score += perfectPoint;
                 Debug.Log("Perfect" + INote.NowNoteNum);
             }
             else if (diff <= greatRange)
             {
+                ScoreManager.Instance.Score += greatPoint;
                 Debug.Log("Great" + INote.NowNoteNum);
             }
             else if (diff <= goodRange)
             {
+                ScoreManager.Instance.Score += goodPoint;
                 Debug.Log("Good" + INote.NowNoteNum);
             }
             else

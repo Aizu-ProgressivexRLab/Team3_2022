@@ -19,9 +19,14 @@ namespace Rhythm
         private Collider _collider;
         private CancellationTokenSource _cts;
         private VFXBase _hitVFX;
+        private float _totalScore;
+        private OVRInput.Controller _leftHand;
+        private OVRInput.Controller _rightHand;
 
         public async UniTaskVoid Initialize(VFXObjectPoolProvider pool, int beatCount, float length)
         {
+            _leftHand = OVRInput.Controller.LTouch;
+            _rightHand = OVRInput.Controller.RTouch;
             _cts = new CancellationTokenSource();
             _poolProvider = pool;
             _vfx = GetComponent<VisualEffect>();
@@ -54,7 +59,8 @@ namespace Rhythm
         /// </summary>
         private void Hit()
         {
-            Debug.Log("HIT");
+            _totalScore = OVRInput.GetLocalControllerAcceleration(_leftHand).magnitude +
+                          OVRInput.GetLocalControllerAcceleration(_rightHand).magnitude;
         }
         
         /// <summary>
@@ -62,6 +68,7 @@ namespace Rhythm
         /// </summary>
         private void Finish()
         {
+            ScoreManager.Instance.Score += (int) _totalScore;
             _poolProvider.Get(2).Return(this);
             INote.NowNoteNum += 2;
             _collider.enabled = false;
