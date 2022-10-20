@@ -166,6 +166,12 @@ namespace Rhythm
                     note.transform.position = _center.position;
                     ((NotesController) note).Initialize(_vfxProvider, _beatCount).Forget();
                 }
+                else if (_scoreBlock[_beatCount] == 3)
+                {
+                    var note = _vfxProvider.Get(4).Rent();
+                    note.transform.position = _center.position;
+                    ((CriticalNotesController) note).Initialize(_vfxProvider, _beatCount).Forget();
+                }
                 else
                 {
                     Debug.Log("無効なブロックです");
