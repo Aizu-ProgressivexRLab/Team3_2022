@@ -5,20 +5,25 @@ using UnityEngine;
 public class hit : MonoBehaviour
 {
     private OVRInput.Controller Lhand;
+    private float Kasokudo;
     // Start is called before the first frame update
     void Start()
     {
-        
+        Lhand = OVRInput.Controller.LTouch;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Lhand = OVRInput.Controller.LTouch;
-        var Lefta = OVRInput.GetLocalControllerAcceleration(Lhand);
-        // if (Lefta != new Vector3(0, 0, 0))
-        // {
-            Debug.Log(Lefta);
-        //}
+        Kasokudo = OVRInput.GetLocalControllerAcceleration(Lhand).magnitude;
+        Debug.Log(Kasokudo);
     }
+    
+    void OnTriggerEnter(Collider collider)
+    {
+        if (collider.CompareTag("target"))
+        {
+            collider.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.forward*Kasokudo*10000);
+        }
+    } 
 }
