@@ -26,7 +26,7 @@ public class hit2 : MonoBehaviour
     {
         if (collider.CompareTag("target"))
         {
-            collider.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.forward*Kasokudo*10000 + Vector3.up * Kasokudo * 100);
+            collider.transform.parent.GetComponent<Rigidbody>().AddForce(Vector3.forward*Kasokudo*10000 + Vector3.up * Kasokudo * 1000);
         }
     } 
     

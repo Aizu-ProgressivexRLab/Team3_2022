@@ -32,6 +32,7 @@ namespace Rhythm
         [SerializeField] private int perfectPoint;
         [SerializeField] private int greatPoint;
         [SerializeField] private int goodPoint;
+        [SerializeField] private GameObject target;
 
         // 出現
         public async UniTaskVoid Initialize(VFXObjectPoolProvider pool, int beatCount, float length = 1f)
@@ -42,6 +43,8 @@ namespace Rhythm
             _vfx.SetFloat("CloseTime", closeTime);
             _collider = GetComponent<Collider>();
             _lifeTime = 0;
+            target = GameObject.FindWithTag("target");
+            target.GetComponent<Collider>().enabled = true;
             if (_hitVFX != null)
             {
                 _poolProvider.Get(1).Return(_hitVFX);   

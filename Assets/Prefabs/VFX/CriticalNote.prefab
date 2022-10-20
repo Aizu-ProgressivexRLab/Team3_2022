@@ -134,6 +134,7 @@ MonoBehaviour:
   perfectPoint: 0
   greatPoint: 0
   goodPoint: 0
+  target: {fileID: 1245140965765903237, guid: 20af44d995bc6834db22de4408f916b1, type: 3}
 --- !u!135 &3441034877755245530
 SphereCollider:
   m_ObjectHideFlags: 0
