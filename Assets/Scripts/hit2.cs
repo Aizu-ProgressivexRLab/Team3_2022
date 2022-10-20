@@ -19,13 +19,15 @@ public class hit2 : MonoBehaviour
     void Update()
     {
        Kasokudo =  (transform.position - preposition).magnitude;
-       Debug.Log(Kasokudo);
        preposition = transform.position;
     }
 
     void OnTriggerEnter(Collider collider)
     {
-        collider.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.forward*Kasokudo*10000);
+        if (collider.CompareTag("target"))
+        {
+            collider.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.forward*Kasokudo*10000 + Vector3.up * Kasokudo * 100);
+        }
     } 
     
 }
