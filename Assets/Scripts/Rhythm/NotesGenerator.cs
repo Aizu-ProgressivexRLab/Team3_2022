@@ -89,7 +89,7 @@ namespace Rhythm
             ReadMusic();
 
             // スタート条件
-            await UniTask.WaitUntil(() => OVRInput.GetDown(OVRInput.RawButton.A, OVRInput.Controller.RTouch),
+            await UniTask.WaitUntil(() => Input.GetKeyDown(KeyCode.Space) || OVRInput.GetDown(OVRInput.RawButton.A, OVRInput.Controller.RTouch),
                 cancellationToken: this.GetCancellationTokenOnDestroy());
 
             this.FixedUpdateAsObservable()
