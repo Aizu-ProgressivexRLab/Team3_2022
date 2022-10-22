@@ -89,7 +89,7 @@ namespace Rhythm
                 Debug.Log("Bad" + INote.NowNoteNum);
             }
 
-            _hitVFX = _poolProvider.Get(1).Rent();
+            WaitHitFX(_poolProvider.Get(1).Rent(), 1f).Forget();
             _hitVFX.transform.position = transform.position;
 
             Finish();
@@ -102,8 +102,15 @@ namespace Rhythm
         {
             INote.NowNoteNum++;
             _collider.enabled = false;
+            _poolProvider.Get(3).Return(this);
             _cts.Cancel();
             _cts.Dispose();
+        }
+        
+        private async UniTaskVoid WaitHitFX(VFXBase vfx, float waitTime)
+        {
+            await UniTask.Delay(TimeSpan.FromSeconds(waitTime), cancellationToken: this.GetCancellationTokenOnDestroy());
+            _poolProvider.Get(vfx.Id).Return(vfx);
         }
 
         private void OnDestroy()

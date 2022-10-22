@@ -76,7 +76,6 @@ namespace Rhythm
             if (_recentAcc.Count != 0)
             {
                 _crackShader.material.SetFloat("_ColorExposure", _recentAcc.Average() * 20f);
-                Debug.Log(_recentAcc.Average());   
             }
         }
 
@@ -106,7 +105,6 @@ namespace Rhythm
         /// </summary>
         private void Finish()
         {
-            Debug.Log(_totalScore);
             ScoreManager.Instance.Score += (int) _totalScore;
             _poolProvider.Get(2).Return(this);
             INote.NowNoteNum += 2;
