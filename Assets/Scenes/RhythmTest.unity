@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1059,6 +1059,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4091530251646747082, guid: 68efb02e9a2c29d43abec70209acef2b,
+        type: 3}
+      propertyPath: m_moveHandPosition
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4091530251652435996, guid: 68efb02e9a2c29d43abec70209acef2b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1109,6 +1114,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: 4091530251994157727, guid: 68efb02e9a2c29d43abec70209acef2b,
+        type: 3}
+      propertyPath: m_HDR
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4091530251995798851, guid: 68efb02e9a2c29d43abec70209acef2b,
         type: 3}
       propertyPath: m_RootOrder
@@ -1127,7 +1137,7 @@ PrefabInstance:
     - target: {fileID: 4091530251995798851, guid: 68efb02e9a2c29d43abec70209acef2b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.596
+      value: -0.335
       objectReference: {fileID: 0}
     - target: {fileID: 4091530251995798851, guid: 68efb02e9a2c29d43abec70209acef2b,
         type: 3}
@@ -1218,6 +1228,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4091530253166944513, guid: 68efb02e9a2c29d43abec70209acef2b,
+        type: 3}
+      propertyPath: m_moveHandPosition
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68efb02e9a2c29d43abec70209acef2b, type: 3}
@@ -1621,3 +1636,4 @@ MonoBehaviour:
   - {fileID: 1961604584251042847, guid: fd3968055b9f8954abc32814951ca74a, type: 3}
   - {fileID: -959388400100524903, guid: feae933342f023b42961cef6fa0268e9, type: 3}
   - {fileID: 1393938092049872289, guid: d6ac62552a3c7d844accacf03b172667, type: 3}
+  - {fileID: 9203806124207311695, guid: c725685c2b4948e4493277816434e2e0, type: 3}

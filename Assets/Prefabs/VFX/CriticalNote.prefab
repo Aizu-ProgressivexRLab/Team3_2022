@@ -126,6 +126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreManager: {fileID: 7280257226586582225, guid: 39b7e548f0e03964a89d78afb644b852,
     type: 3}
+  id: 3
   closeTime: 0.5
   perfectRange: 0.1
   greatRange: 0.2

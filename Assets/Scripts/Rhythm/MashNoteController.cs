@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -96,6 +97,8 @@ namespace Rhythm
                 _recentAcc.Dequeue();
             }
             _crackShader.material.SetFloat("_Exposure", _totalScore * 1 / (0.78f * _length));
+
+            WaitHitFX(_poolProvider.Get(4).Rent(), 1f).Forget();
         }
         
         /// <summary>
@@ -110,6 +113,12 @@ namespace Rhythm
             _collider.enabled = false;
             _cts.Cancel();
             _cts.Dispose();
+        }
+
+        private async UniTaskVoid WaitHitFX(VFXBase vfx, float waitTime)
+        {
+            await UniTask.Delay(TimeSpan.FromSeconds(waitTime), cancellationToken: this.GetCancellationTokenOnDestroy());
+            _poolProvider.Get(vfx.Id).Return(vfx);
         }
 
         private void OnDestroy()
