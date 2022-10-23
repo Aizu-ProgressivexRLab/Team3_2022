@@ -102,6 +102,7 @@ namespace Rhythm
         {
             INote.NowNoteNum++;
             _collider.enabled = false;
+            _vfx.SendMessage("OnStop");
             _poolProvider.Get(3).Return(this);
             _cts.Cancel();
             _cts.Dispose();

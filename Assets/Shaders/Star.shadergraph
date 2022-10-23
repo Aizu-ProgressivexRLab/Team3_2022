@@ -224,9 +224,9 @@
     },
     "m_Color": {
         "color": {
-            "r": 1048576.0,
-            "g": 1048576.0,
-            "b": 1048576.0,
+            "r": 23.9686279296875,
+            "g": 23.9686279296875,
+            "b": 23.9686279296875,
             "a": 1.0
         },
         "mode": 1
@@ -250,7 +250,7 @@
     "m_CastShadows": true,
     "m_ReceiveShadows": true,
     "m_CustomEditorGUI": "",
-    "m_SupportVFX": false
+    "m_SupportVFX": true
 }
 
 {

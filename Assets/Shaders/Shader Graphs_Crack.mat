@@ -43,10 +43,10 @@ Material:
     - _AlphaClip: 1
     - _Blend: 0
     - _CastShadows: 0
-    - _ColorExposure: 0
+    - _ColorExposure: 0.778
     - _Cull: 2
     - _DstBlend: 10
-    - _Exposure: 0
+    - _Exposure: 1
     - _QueueControl: 0
     - _QueueOffset: 0
     - _SrcBlend: 5

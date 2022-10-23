@@ -75,7 +75,8 @@ namespace Rhythm
             
             if (_recentAcc.Count != 0)
             {
-                _crackShader.material.SetFloat("_ColorExposure", _recentAcc.Average() * 20f);
+                // _crackShader.material.SetFloat("_ColorExposure", _recentAcc.Average() * 20f);
+                _vfx.SetFloat("CrackColorExposure", _recentAcc.Average() * 20f);
             }
         }
 
@@ -95,8 +96,8 @@ namespace Rhythm
             {
                 _recentAcc.Dequeue();
             }
-            _crackShader.material.SetFloat("_Exposure", _totalScore * 1 / (0.78f * _length));
-            _vfx.SetFloat("_CrackExposure", _totalScore * 1 / (0.78f * _length));
+            // _crackShader.material.SetFloat("_Exposure", _totalScore * 1 / (0.78f * _length));
+            _vfx.SetFloat("CrackExposure", _totalScore * 1 / (0.78f * _length));
 
             WaitHitFX(_poolProvider.Get(4).Rent(), 1f).Forget();
         }
