@@ -6,7 +6,9 @@ using UnityEngine;
 public class hit2 : MonoBehaviour
 {
     // Start is called before the first frame update
-
+    
+    public float Acceleration => Kasokudo;  // 公開用のプロパティ
+    
     private Vector3 preposition;
     private float Kasokudo;
     

@@ -43,10 +43,6 @@ namespace Rhythm
             _vfx.SetFloat("CloseTime", closeTime);
             _collider = GetComponent<Collider>();
             _lifeTime = 0;
-            if (_hitVFX != null)
-            {
-                _poolProvider.Get(1).Return(_hitVFX);   
-            }
 
             // 前のノーツが消えるまで待つ
             await UniTask.WaitUntil(() => INote.NowNoteNum == beatCount, cancellationToken: _cts.Token);
@@ -102,7 +98,7 @@ namespace Rhythm
                 Debug.Log("Bad" + INote.NowNoteNum);
             }
 
-            _hitVFX = _poolProvider.Get(1).Rent();
+            WaitHitFX(_hitVFX = _poolProvider.Get(1).Rent(), 1f).Forget();
             _hitVFX.transform.position = transform.position;
 
             Finish();
@@ -118,6 +114,12 @@ namespace Rhythm
             _collider.enabled = false;
             _cts.Cancel();
             _cts.Dispose();
+        }
+        
+        private async UniTaskVoid WaitHitFX(VFXBase vfx, float waitTime)
+        {
+            await UniTask.Delay(TimeSpan.FromSeconds(waitTime), cancellationToken: this.GetCancellationTokenOnDestroy());
+            _poolProvider.Get(vfx.Id).Return(vfx);
         }
 
         private void OnDestroy()

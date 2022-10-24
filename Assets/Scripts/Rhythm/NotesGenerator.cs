@@ -89,7 +89,7 @@ namespace Rhythm
             ReadMusic();
 
             // スタート条件
-            await UniTask.WaitUntil(() => OVRInput.GetDown(OVRInput.RawButton.A, OVRInput.Controller.RTouch),
+            await UniTask.WaitUntil(() => Input.GetKeyDown(KeyCode.Space) || OVRInput.GetDown(OVRInput.RawButton.A, OVRInput.Controller.RTouch),
                 cancellationToken: this.GetCancellationTokenOnDestroy());
 
             this.FixedUpdateAsObservable()
@@ -163,12 +163,6 @@ namespace Rhythm
                 else if (_scoreBlock[_beatCount] == 2)
                 {
                     var note = _vfxProvider.Get(3).Rent();
-                    note.transform.position = _center.position;
-                    ((NotesController) note).Initialize(_vfxProvider, _beatCount).Forget();
-                }
-                else if (_scoreBlock[_beatCount] == 3)
-                {
-                    var note = _vfxProvider.Get(4).Rent();
                     note.transform.position = _center.position;
                     ((CriticalNotesController) note).Initialize(_vfxProvider, _beatCount).Forget();
                 }

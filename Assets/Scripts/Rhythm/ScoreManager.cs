@@ -21,6 +21,12 @@ namespace Rhythm
                 return _instance;
             }
         }
+        
+        private void Awake()
+        {
+            _instance = this;
+        }
+
 
         private static ScoreManager _instance;
     }
