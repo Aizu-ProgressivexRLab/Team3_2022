@@ -99,7 +99,7 @@ namespace Rhythm
             // _crackShader.material.SetFloat("_Exposure", _totalScore * 1 / (0.78f * _length));
             _vfx.SetFloat("CrackExposure", _totalScore * 1 / (0.78f * _length));
 
-            WaitHitFX(_poolProvider.Get(4).Rent(), 1f).Forget();
+            //WaitHitFX(_poolProvider.Get(4).Rent(), 1f).Forget();
         }
         
         /// <summary>
