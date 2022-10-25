@@ -5,8 +5,16 @@ namespace Rhythm
 {
     public class ScoreManager : MonoBehaviour
     {
-        public int Score { get; set; }
-        private int _score;
+        public int Score
+        {
+            get => _score;
+            set
+            {
+                _score = value;
+            }
+        }
+
+        [SerializeField]private int _score;
 
         public static ScoreManager Instance
         {
