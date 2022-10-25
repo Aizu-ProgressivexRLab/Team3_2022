@@ -31,7 +31,7 @@ public class Hit2 : MonoBehaviour
         if (collider.CompareTag("target"))
         {
             var multiply = Kasokudo * ScoreManager.Instance.Score * strength;
-            collider.transform.parent.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.forward * multiply + Vector3.up * multiply * 0.5f);
+            collider.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.forward * multiply + Vector3.up * multiply * 0.1f);
         }
     } 
     
