@@ -1811,6 +1811,17 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VisualEffect_SendEvent_m8FE48624C9E9D21E
 		return;
 	}
 }
+// System.Void UnityEngine.VFX.VisualEffect::SendEvent(System.String)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VisualEffect_SendEvent_m4CFDFA3DDEB734D0EE68DD656BF5BBC85CCCC8EC (VisualEffect_t8CF4F0E13AEBF27224BB1323CC103666EDBBCFB0* __this, String_t* ___eventName0, const RuntimeMethod* method) 
+{
+	{
+		String_t* L_0 = ___eventName0;
+		int32_t L_1;
+		L_1 = Shader_PropertyToID_mE98523D50F5656CAE89B30695C458253EB8956CA(L_0, NULL);
+		VisualEffect_SendEvent_m4796EBECD8CAA5FFD03EACA27049B34F4965A74F(__this, L_1, (VFXEventAttribute_tA764A595356174BA39C782A8A64B47B39FB3F518*)NULL, NULL);
+		return;
+	}
+}
 // System.Boolean UnityEngine.VFX.VisualEffect::HasBool(System.Int32)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool VisualEffect_HasBool_m880EB204D4723EB3C06B2E34A52486E678A752AA (VisualEffect_t8CF4F0E13AEBF27224BB1323CC103666EDBBCFB0* __this, int32_t ___nameID0, const RuntimeMethod* method) 
 {
