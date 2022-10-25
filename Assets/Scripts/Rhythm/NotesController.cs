@@ -23,6 +23,8 @@ namespace Rhythm
         [SerializeField, Tooltip("Goodが出る範囲")] private float goodRange = 0.3f;
         [SerializeField, Tooltip("判定が出る範囲")] private float badRange = 0.5f;
 
+        [SerializeField] private AudioClip hitSE;
+
         [SerializeField] private int perfectPoint = 5;
         [SerializeField] private int greatPoint = 4;
         [SerializeField] private int goodPoint = 3;
@@ -33,6 +35,7 @@ namespace Rhythm
         private Collider _collider;
         private CancellationTokenSource _cts;
         private VFXBase _hitVFX;
+        private AudioSource _audioSource;
 
         // 出現
         public async UniTaskVoid Initialize(VFXObjectPoolProvider pool, int beatCount, float length = 1f)
@@ -43,6 +46,7 @@ namespace Rhythm
             _vfx.SetFloat("CloseTime", closeTime);
             _collider = GetComponent<Collider>();
             _lifeTime = 0;
+            _audioSource = GetComponent<AudioSource>();
 
             // 前のノーツが消えるまで待つ
             await UniTask.WaitUntil(() => INote.NowNoteNum == beatCount, cancellationToken: _cts.Token);
@@ -100,6 +104,7 @@ namespace Rhythm
 
             WaitHitFX(_hitVFX = _poolProvider.Get(1).Rent(), 1f).Forget();
             _hitVFX.transform.position = transform.position;
+            _audioSource.PlayOneShot(hitSE);
 
             Finish();
         }
