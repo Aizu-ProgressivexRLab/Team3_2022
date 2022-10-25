@@ -7,8 +7,8 @@ using UnityEngine.VFX;
 
 public class Target : MonoBehaviour
 {
-   [SerializeField] private VisualEffect smoke;
-   [SerializeField] private VisualEffect trail;
+   [SerializeField] private GameObject smoke;
+   [SerializeField] private GameObject trail;
 
    private Rigidbody _rb;
 
@@ -18,13 +18,12 @@ public class Target : MonoBehaviour
       
       await GameManager.Instance.OnFinish.ToUniTask(cancellationToken: this.GetCancellationTokenOnDestroy());
       
-      smoke.SendEvent("OnPlay");
-      trail.SendEvent("OnPlay");
+      smoke.SetActive(true);
+      trail.SetActive(true);
 
-      await UniTask.WaitUntil(() => _rb.velocity.magnitude < 1f,
-         cancellationToken: this.GetCancellationTokenOnDestroy());
+      await UniTask.Delay(TimeSpan.FromSeconds(3f), cancellationToken: this.GetCancellationTokenOnDestroy());
       
-      smoke.SendEvent("OnStop");
-      trail.gameObject.SetActive(false);
+      smoke.SetActive(false);
+      trail.SetActive(false);
    }
 }
