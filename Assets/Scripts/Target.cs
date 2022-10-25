@@ -20,7 +20,6 @@ public class Target : MonoBehaviour
       
       smoke.SendEvent("OnPlay");
       trail.SendEvent("OnPlay");
-      Debug.Log("KOKO");
 
       await UniTask.Delay(TimeSpan.FromSeconds(3f), cancellationToken: this.GetCancellationTokenOnDestroy());
       
