@@ -442,11 +442,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4091530251652732946, guid: 68efb02e9a2c29d43abec70209acef2b,
-        type: 3}
-      propertyPath: m_TagString
-      value: Hand
-      objectReference: {fileID: 0}
     - target: {fileID: 4091530251995798851, guid: 68efb02e9a2c29d43abec70209acef2b,
         type: 3}
       propertyPath: m_RootOrder
@@ -506,11 +501,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 4091530253160880533, guid: 68efb02e9a2c29d43abec70209acef2b,
-        type: 3}
-      propertyPath: m_TagString
-      value: Hand
       objectReference: {fileID: 0}
     - target: {fileID: 5003092949794185560, guid: 68efb02e9a2c29d43abec70209acef2b,
         type: 3}
