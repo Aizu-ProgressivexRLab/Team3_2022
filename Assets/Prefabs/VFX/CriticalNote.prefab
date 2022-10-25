@@ -155,13 +155,14 @@ MonoBehaviour:
     type: 3}
   id: 3
   closeTime: 2
-  perfectRange: 0.1
-  greatRange: 0.2
-  goodRange: 0.3
-  badRange: 0.5
-  perfectPoint: 0
-  greatPoint: 0
-  goodPoint: 0
+  perfectRange: 0.2
+  greatRange: 0.4
+  goodRange: 0.8
+  badRange: 1
+  perfectMultiply: 2
+  greatMultiply: 1.5
+  goodMultiply: 1.2
+  badMultiply: 1
 --- !u!135 &3441034877755245530
 SphereCollider:
   m_ObjectHideFlags: 0
