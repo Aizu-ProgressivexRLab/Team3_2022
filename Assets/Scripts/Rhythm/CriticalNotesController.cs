@@ -33,6 +33,8 @@ namespace Rhythm
         [SerializeField] private float greatMultiply = 1.5f;
         [SerializeField] private float goodMultiply = 1.2f;
         [SerializeField] private float badMultiply = 1.0f;
+        
+        private GameObject _target;
 
         // 出現
         public async UniTaskVoid Initialize(VFXObjectPoolProvider pool, int beatCount, float length = 1f)
@@ -47,6 +49,9 @@ namespace Rhythm
             {
                 _poolProvider.Get(1).Return(_hitVFX);   
             }
+            _target = GameObject.FindWithTag("target");
+            _target.GetComponent<Collider>().enabled = true;
+            _target.transform.parent.GetComponent<Collider>().enabled = false;
 
             _collider.enabled = true;
             this.OnTriggerEnterAsObservable()
