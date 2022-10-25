@@ -9,7 +9,7 @@ public class Target : MonoBehaviour
 {
    [SerializeField] private VisualEffect smoke;
    [SerializeField] private VisualEffect trail;
-
+   
    private Rigidbody _rb;
 
    private async void Start()
@@ -26,5 +26,10 @@ public class Target : MonoBehaviour
       
       smoke.SendEvent("OnStop");
       trail.gameObject.SetActive(false);
+   }
+
+   public void SetCollider()
+   {
+      
    }
 }
