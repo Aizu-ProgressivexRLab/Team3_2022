@@ -20,9 +20,9 @@ public class Target : MonoBehaviour
       
       smoke.SendEvent("OnPlay");
       trail.SendEvent("OnPlay");
+      Debug.Log("KOKO");
 
-      await UniTask.WaitUntil(() => _rb.velocity.magnitude < 1f,
-         cancellationToken: this.GetCancellationTokenOnDestroy());
+      await UniTask.Delay(TimeSpan.FromSeconds(3f), cancellationToken: this.GetCancellationTokenOnDestroy());
       
       smoke.SendEvent("OnStop");
       trail.gameObject.SetActive(false);

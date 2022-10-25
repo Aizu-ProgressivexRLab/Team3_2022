@@ -33,7 +33,6 @@ namespace Rhythm
         [SerializeField] private float greatMultiply = 1.5f;
         [SerializeField] private float goodMultiply = 1.2f;
         [SerializeField] private float badMultiply = 1.0f;
-        private Subject<Unit> _onFinishSubject = new Subject<Unit>();
 
         // 出現
         public async UniTaskVoid Initialize(VFXObjectPoolProvider pool, int beatCount, float length = 1f)
@@ -49,15 +48,12 @@ namespace Rhythm
                 _poolProvider.Get(1).Return(_hitVFX);   
             }
 
-            GameManager.Instance.OnFinish = _onFinishSubject;
-            _onFinishSubject.AddTo(this);
-
             _collider.enabled = true;
             this.OnTriggerEnterAsObservable()
                 .Where(x => x.CompareTag("Hand"))
                 .Subscribe(_ => Hit()).AddTo(_cts.Token);
 
-            await _onFinishSubject.ToUniTask(cancellationToken: _cts.Token);
+            await GameManager.Instance.OnFinish.ToUniTask(cancellationToken: _cts.Token);
 
             // 時間切れ 
             Finish();
@@ -95,9 +91,10 @@ namespace Rhythm
                 Debug.Log("Bad" + INote.NowNoteNum);
             }
             
-            WaitHitFX(_poolProvider.Get(1).Rent(), 1f).Forget();
+            WaitHitFX(_hitVFX = _poolProvider.Get(1).Rent(), 1f).Forget();
             _hitVFX.transform.position = transform.position;
-            _onFinishSubject.OnCompleted();
+            GameManager.Instance.OnFinish.OnNext(Unit.Default);
+            GameManager.Instance.OnFinish.OnCompleted();
 
             Finish();
         }
@@ -109,7 +106,7 @@ namespace Rhythm
         {
             INote.NowNoteNum++;
             _collider.enabled = false;
-            _vfx.SendMessage("OnStop");
+            _vfx.SendEvent("OnStop");
             _poolProvider.Get(3).Return(this);
             _cts.Cancel();
             _cts.Dispose();
