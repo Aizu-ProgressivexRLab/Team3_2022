@@ -50,7 +50,18 @@ namespace Rhythm
             _collider.enabled = true;
             this.OnTriggerEnterAsObservable()
                 .Where(x => x.CompareTag("Hand"))
-                .Subscribe(_ => Hit()).AddTo(_cts.Token);
+                .Subscribe(x =>
+                {
+                    if (x.gameObject == GameManager.Instance.LeftHand)
+                    {
+                        HandVibrator.Vibrate(OVRInput.Controller.LTouch, 0.1f, x.GetCancellationTokenOnDestroy());
+                    }
+                    else if (x.gameObject == GameManager.Instance.RightHand)
+                    {
+                        HandVibrator.Vibrate(OVRInput.Controller.RTouch, 0.1f, x.GetCancellationTokenOnDestroy());
+                    }
+                    Hit();
+                }).AddTo(_cts.Token);
 
             if (beatCount == 0)
             {
