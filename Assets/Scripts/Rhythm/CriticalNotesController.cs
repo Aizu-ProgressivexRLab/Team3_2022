@@ -29,9 +29,11 @@ namespace Rhythm
         private Collider _collider;
         private CancellationTokenSource _cts;
         private VFXBase _hitVFX;
-        [SerializeField] private int perfectPoint;
-        [SerializeField] private int greatPoint;
-        [SerializeField] private int goodPoint;
+        [SerializeField] private float perfectMultiply = 2.0f;
+        [SerializeField] private float greatMultiply = 1.5f;
+        [SerializeField] private float goodMultiply = 1.2f;
+        [SerializeField] private float badMultiply = 1.0f;
+        private Subject<Unit> _onFinishSubject = new Subject<Unit>();
 
         // 出現
         public async UniTaskVoid Initialize(VFXObjectPoolProvider pool, int beatCount, float length = 1f)
@@ -47,12 +49,15 @@ namespace Rhythm
                 _poolProvider.Get(1).Return(_hitVFX);   
             }
 
+            GameManager.Instance.OnFinish = _onFinishSubject;
+            _onFinishSubject.AddTo(this);
+
             _collider.enabled = true;
             this.OnTriggerEnterAsObservable()
                 .Where(x => x.CompareTag("Hand"))
                 .Subscribe(_ => Hit()).AddTo(_cts.Token);
 
-            await UniTask.WaitUntil(() => _lifeTime >= closeTime + badRange, cancellationToken: _cts.Token);
+            await _onFinishSubject.ToUniTask(cancellationToken: _cts.Token);
 
             // 時間切れ 
             Finish();
@@ -71,26 +76,28 @@ namespace Rhythm
             var diff = Math.Abs(_lifeTime - closeTime);
             if (diff <= perfectRange)
             {
-                ScoreManager.Instance.Score += perfectPoint;
+                ScoreManager.Instance.Score = (int)(ScoreManager.Instance.Score * perfectMultiply);
                 Debug.Log("Perfect" + INote.NowNoteNum);
             }
             else if (diff <= greatRange)
             {
-                ScoreManager.Instance.Score += greatPoint;
+                ScoreManager.Instance.Score = (int)(ScoreManager.Instance.Score * greatMultiply);
                 Debug.Log("Great" + INote.NowNoteNum);
             }
             else if (diff <= goodRange)
             {
-                ScoreManager.Instance.Score += goodPoint;
+                ScoreManager.Instance.Score = (int)(ScoreManager.Instance.Score * goodMultiply);
                 Debug.Log("Good" + INote.NowNoteNum);
             }
             else
             {
+                ScoreManager.Instance.Score = (int)(ScoreManager.Instance.Score * badMultiply);
                 Debug.Log("Bad" + INote.NowNoteNum);
             }
-
+            
             WaitHitFX(_poolProvider.Get(1).Rent(), 1f).Forget();
             _hitVFX.transform.position = transform.position;
+            _onFinishSubject.OnCompleted();
 
             Finish();
         }

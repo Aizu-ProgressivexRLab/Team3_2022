@@ -370,6 +370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69b6470eb019dc6438b3a3f0ab69c911, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _score: 0
 --- !u!4 &1110911667
 Transform:
   m_ObjectHideFlags: 0
@@ -441,6 +442,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4091530251652732946, guid: 68efb02e9a2c29d43abec70209acef2b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Hand
+      objectReference: {fileID: 0}
     - target: {fileID: 4091530251995798851, guid: 68efb02e9a2c29d43abec70209acef2b,
         type: 3}
       propertyPath: m_RootOrder
@@ -501,6 +507,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4091530253160880533, guid: 68efb02e9a2c29d43abec70209acef2b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Hand
+      objectReference: {fileID: 0}
+    - target: {fileID: 5003092949794185560, guid: 68efb02e9a2c29d43abec70209acef2b,
+        type: 3}
+      propertyPath: center
+      value: 
+      objectReference: {fileID: 471220890422363497}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68efb02e9a2c29d43abec70209acef2b, type: 3}
 --- !u!1 &1621029617
@@ -682,6 +698,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1bdcdb761a8cb44ea51873b2371c6a4, type: 3}
+--- !u!4 &471220890422363497 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 508207472, guid: c1bdcdb761a8cb44ea51873b2371c6a4,
+    type: 3}
+  m_PrefabInstance: {fileID: 471220890422363496}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5590535940560280006
 PrefabInstance:
   m_ObjectHideFlags: 0

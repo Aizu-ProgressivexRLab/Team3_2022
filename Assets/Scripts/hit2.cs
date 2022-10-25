@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Rhythm;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class hit2 : MonoBehaviour
+public class Hit2 : MonoBehaviour
 {
     // Start is called before the first frame update
     
@@ -11,6 +12,7 @@ public class hit2 : MonoBehaviour
     
     private Vector3 preposition;
     private float Kasokudo;
+    [SerializeField] private float strength = 10;
     
         void Start()
     {
@@ -28,7 +30,8 @@ public class hit2 : MonoBehaviour
     {
         if (collider.CompareTag("target"))
         {
-            collider.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.forward*Kasokudo*10000 + Vector3.up * Kasokudo * 100);
+            var multiply = Kasokudo * ScoreManager.Instance.Score * strength;
+            collider.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.forward * multiply + Vector3.up * multiply * 0.1f);
         }
     } 
     

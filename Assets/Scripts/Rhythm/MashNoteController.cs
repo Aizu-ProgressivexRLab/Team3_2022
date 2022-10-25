@@ -16,8 +16,8 @@ namespace Rhythm
         [SerializeField, Tooltip("リングが閉じるまでの時間")]
         private float closeTime;
         
-        private hit2 _leftHand;
-        private hit2 _rightHand;
+        private Hit2 _leftHand;
+        private Hit2 _rightHand;
 
         private float _lifeTime = 0f; // 生成されてからの時間
         private VisualEffect _vfx;
@@ -40,8 +40,8 @@ namespace Rhythm
             _collider = GetComponent<Collider>();
             _lifeTime = 0;
             _crackShader = GetComponentInChildren<MeshRenderer>();
-            _leftHand = GameManager.Instance.LeftHand.GetComponent<hit2>();
-            _rightHand = GameManager.Instance.RightHand.GetComponent<hit2>();
+            _leftHand = GameManager.Instance.LeftHand.GetComponent<Hit2>();
+            _rightHand = GameManager.Instance.RightHand.GetComponent<Hit2>();
             _length = length;
 
             // 前のノーツが消えるまで待つ
