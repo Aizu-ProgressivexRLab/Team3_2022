@@ -128,11 +128,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06ce2bcf2c2ba1f44aa7bf0545eb3b3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreManager: {fileID: 0}
+  id: 0
   closeTime: 0.5
   perfectRange: 0.1
   greatRange: 0.2
   goodRange: 0.3
   badRange: 0.5
+  perfectPoint: 3
+  greatPoint: 2
+  goodPoint: 1
 --- !u!135 &2951126068022034812
 SphereCollider:
   m_ObjectHideFlags: 0
