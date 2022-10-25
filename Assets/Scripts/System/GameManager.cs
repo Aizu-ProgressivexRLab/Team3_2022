@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject leftHand;
     [SerializeField] private GameObject rightHand;
 
-    private Subject<Unit> _onFinishSubject;
+    private Subject<Unit> _onFinishSubject = new Subject<Unit>();
 
     public static GameManager Instance
     {
