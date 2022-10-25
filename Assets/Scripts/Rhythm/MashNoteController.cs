@@ -15,6 +15,8 @@ namespace Rhythm
     {
         [SerializeField, Tooltip("リングが閉じるまでの時間")]
         private float closeTime;
+
+        [SerializeField] private AudioClip hitSE;
         
         private Hit2 _leftHand;
         private Hit2 _rightHand;
@@ -29,6 +31,7 @@ namespace Rhythm
         private MeshRenderer _crackShader;
         private float _length;
         private Queue<float> _recentAcc = new Queue<float>();
+        private AudioSource _audioSource;
 
         public async UniTaskVoid Initialize(VFXObjectPoolProvider pool, int beatCount, float length)
         {
@@ -43,6 +46,7 @@ namespace Rhythm
             _leftHand = GameManager.Instance.LeftHand.GetComponent<Hit2>();
             _rightHand = GameManager.Instance.RightHand.GetComponent<Hit2>();
             _length = length;
+            _audioSource = GetComponent<AudioSource>();
 
             // 前のノーツが消えるまで待つ
             await UniTask.WaitUntil(() => INote.NowNoteNum == beatCount, cancellationToken: _cts.Token);
@@ -50,7 +54,18 @@ namespace Rhythm
             _collider.enabled = true;
             this.OnTriggerEnterAsObservable()
                 .Where(x => x.CompareTag("Hand"))
-                .Subscribe(_ => Hit()).AddTo(_cts.Token);
+                .Subscribe(x =>
+                {
+                    if (x.gameObject == GameManager.Instance.LeftHand)
+                    {
+                        HandVibrator.Vibrate(OVRInput.Controller.LTouch, 0.1f, x.GetCancellationTokenOnDestroy());
+                    }
+                    else if (x.gameObject == GameManager.Instance.RightHand)
+                    {
+                        HandVibrator.Vibrate(OVRInput.Controller.RTouch, 0.1f, x.GetCancellationTokenOnDestroy());
+                    }
+                    Hit();
+                }).AddTo(_cts.Token);
 
             this.FixedUpdateAsObservable()
                 .ThrottleFirstFrame(10)
@@ -100,6 +115,8 @@ namespace Rhythm
             _vfx.SetFloat("CrackExposure", _totalScore * 1 / (0.78f * _length));
 
             //WaitHitFX(_poolProvider.Get(4).Rent(), 1f).Forget();
+            
+            _audioSource.PlayOneShot(hitSE);
         }
         
         /// <summary>
