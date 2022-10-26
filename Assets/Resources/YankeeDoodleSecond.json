@@ -161,62 +161,20 @@
     {
       "LPB": 4,
       "num": 192,
-      "block": 0,
-      "type": 1,
-      "notes": []
-    },
-    {
-      "LPB": 4,
-      "num": 196,
-      "block": 0,
-      "type": 1,
-      "notes": []
-    },
-    {
-      "LPB": 4,
-      "num": 200,
-      "block": 0,
+      "block": 1,
       "type": 1,
       "notes": []
     },
     {
       "LPB": 4,
       "num": 204,
-      "block": 0,
+      "block": 1,
       "type": 1,
       "notes": []
     },
     {
       "LPB": 4,
       "num": 208,
-      "block": 0,
-      "type": 1,
-      "notes": []
-    },
-    {
-      "LPB": 4,
-      "num": 216,
-      "block": 0,
-      "type": 1,
-      "notes": []
-    },
-    {
-      "LPB": 4,
-      "num": 224,
-      "block": 1,
-      "type": 1,
-      "notes": []
-    },
-    {
-      "LPB": 4,
-      "num": 232,
-      "block": 1,
-      "type": 1,
-      "notes": []
-    },
-    {
-      "LPB": 4,
-      "num": 240,
       "block": 2,
       "type": 1,
       "notes": []
