@@ -33,8 +33,6 @@ namespace Rhythm
         private Collider _collider;
         private CancellationTokenSource _cts;
         private VFXBase _hitVFX;
-        
-        private int _bc;
 
         // 出現
         public async UniTaskVoid Initialize(VFXObjectPoolProvider pool, int beatCount, float length = 1f)
@@ -45,7 +43,6 @@ namespace Rhythm
             _vfx.SetFloat("CloseTime", closeTime);
             _collider = GetComponent<Collider>();
             _lifeTime = 0;
-            _bc = beatCount; 
 
             // 前のノーツが消えるまで待つ
             await UniTask.WaitUntil(() => INote.NowNoteNum == beatCount, cancellationToken: _cts.Token);
