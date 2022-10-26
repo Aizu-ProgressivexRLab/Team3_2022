@@ -33,6 +33,8 @@ namespace Rhythm
         private Collider _collider;
         private CancellationTokenSource _cts;
         private VFXBase _hitVFX;
+        
+        private int _bc;
 
         // 出現
         public async UniTaskVoid Initialize(VFXObjectPoolProvider pool, int beatCount, float length = 1f)
@@ -43,6 +45,7 @@ namespace Rhythm
             _vfx.SetFloat("CloseTime", closeTime);
             _collider = GetComponent<Collider>();
             _lifeTime = 0;
+            _bc = beatCount; 
 
             // 前のノーツが消えるまで待つ
             await UniTask.WaitUntil(() => INote.NowNoteNum == beatCount, cancellationToken: _cts.Token);
@@ -62,12 +65,13 @@ namespace Rhythm
                     }
                     Hit();
                 }).AddTo(_cts.Token);
-
+            
             if (beatCount == 0)
             {
+                _vfx.enabled = false;
                 await UniTask.WaitUntil(() => _lifeTime >= closeTime, cancellationToken: _cts.Token);
 
-                NotesGenerator.IsAudioPlay = true;
+                NotesGenerator.PlayingAudioIndex++;
                 Finish();
                 return;
             }
@@ -78,6 +82,10 @@ namespace Rhythm
             Finish();
         }
 
+        private void Test()
+        {
+            Debug.Log(_lifeTime);
+        }
         private void FixedUpdate()
         {
             _lifeTime += Time.deltaTime;
@@ -137,6 +145,11 @@ namespace Rhythm
         {
             _cts?.Cancel();
             _cts?.Dispose();
+        }
+
+        private void OnDisable()
+        {
+            _vfx.enabled = true;
         }
     }
 }

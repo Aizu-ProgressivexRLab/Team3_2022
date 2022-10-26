@@ -51,9 +51,12 @@ namespace Rhythm
             }
             _target = GameObject.FindWithTag("target");
             _target.GetComponent<Collider>().enabled = true;
-            _target.transform.parent.GetComponent<Collider>().enabled = false;
 
+            await UniTask.Delay(TimeSpan.FromSeconds(closeTime / 3),
+                cancellationToken: this.GetCancellationTokenOnDestroy());
+            
             _collider.enabled = true;
+            
             this.OnTriggerEnterAsObservable()
                 .Where(x => x.CompareTag("Hand"))
                 .Subscribe(x =>

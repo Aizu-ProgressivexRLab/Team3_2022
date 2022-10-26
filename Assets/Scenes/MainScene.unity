@@ -1775,6 +1775,16 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8592298402661455808, guid: c1bdcdb761a8cb44ea51873b2371c6a4,
+        type: 3}
+      propertyPath: firstHalf
+      value: 
+      objectReference: {fileID: 8300000, guid: 0d157a3630f71bf42af7a88810c119fb, type: 3}
+    - target: {fileID: 8592298402661455808, guid: c1bdcdb761a8cb44ea51873b2371c6a4,
+        type: 3}
+      propertyPath: secondHalf
+      value: 
+      objectReference: {fileID: 8300000, guid: 78aef50563092e944be8eb6b8b7b9b89, type: 3}
     - target: {fileID: 8592298402661455809, guid: c1bdcdb761a8cb44ea51873b2371c6a4,
         type: 3}
       propertyPath: m_RootOrder
