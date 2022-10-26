@@ -18,8 +18,8 @@ namespace Rhythm
 
         [SerializeField] private AudioClip hitSE;
         
-        private Hit2 _leftHand;
-        private Hit2 _rightHand;
+        private hit2 _leftHand;
+        private hit2 _rightHand;
 
         private float _lifeTime = 0f; // 生成されてからの時間
         private VisualEffect _vfx;
@@ -43,10 +43,11 @@ namespace Rhythm
             _collider = GetComponent<Collider>();
             _lifeTime = 0;
             _crackShader = GetComponentInChildren<MeshRenderer>();
-            _leftHand = GameManager.Instance.LeftHand.GetComponent<Hit2>();
-            _rightHand = GameManager.Instance.RightHand.GetComponent<Hit2>();
+            _leftHand = GameManager.Instance.LeftHand.GetComponent<hit2>();
+            _rightHand = GameManager.Instance.RightHand.GetComponent<hit2>();
             _length = length;
             _audioSource = GetComponent<AudioSource>();
+            _totalScore = 0;
 
             // 前のノーツが消えるまで待つ
             await UniTask.WaitUntil(() => INote.NowNoteNum == beatCount, cancellationToken: _cts.Token);
@@ -68,7 +69,7 @@ namespace Rhythm
                 }).AddTo(_cts.Token);
 
             this.FixedUpdateAsObservable()
-                .ThrottleFirstFrame(10)
+                .ThrottleFirstFrame(5)
                 .Subscribe(_ =>
                 {
                     _recentAcc.Enqueue(0);
@@ -125,6 +126,9 @@ namespace Rhythm
         private void Finish()
         {
             ScoreManager.Instance.Score += (int) _totalScore;
+            _vfx.SetFloat("CrackColorExposure", 0);
+            _vfx.SetFloat("CrackExposure", 0);
+            _recentAcc.Clear();
             _poolProvider.Get(2).Return(this);
             INote.NowNoteNum += 2;
             _collider.enabled = false;

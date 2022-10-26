@@ -4,7 +4,7 @@ using Rhythm;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Hit2 : MonoBehaviour
+public class hit2 : MonoBehaviour
 {
     // Start is called before the first frame update
     
@@ -30,8 +30,9 @@ public class Hit2 : MonoBehaviour
     {
         if (collider.CompareTag("target"))
         {
-            var multiply = Kasokudo * ScoreManager.Instance.Score * strength;
-            collider.transform.parent.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.forward * multiply + Vector3.up * multiply * 0.5f);
+            var multiply = Mathf.Clamp(Kasokudo * ScoreManager.Instance.Score * strength, 100f, 2000f);
+            
+            collider.transform.parent.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.forward * multiply + Vector3.up * Mathf.Sqrt(multiply) * 0.5f);
         }
     } 
     
