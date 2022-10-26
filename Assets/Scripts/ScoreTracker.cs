@@ -12,7 +12,7 @@ public class ScoreTracker : MonoBehaviour
 {
     [SerializeField] private string propertyName;
     [SerializeField] private float updateSpan = 0.5f;
-    [SerializeField] private int maxScore = 500;
+    private int maxScore = 256;
 
     private VisualEffect _vfx;
     private MeshRenderer _mr;
