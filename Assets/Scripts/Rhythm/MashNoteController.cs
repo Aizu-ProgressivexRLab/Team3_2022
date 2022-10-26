@@ -47,6 +47,7 @@ namespace Rhythm
             _rightHand = GameManager.Instance.RightHand.GetComponent<hit2>();
             _length = length;
             _audioSource = GetComponent<AudioSource>();
+            _totalScore = 0;
 
             // 前のノーツが消えるまで待つ
             await UniTask.WaitUntil(() => INote.NowNoteNum == beatCount, cancellationToken: _cts.Token);
@@ -68,7 +69,7 @@ namespace Rhythm
                 }).AddTo(_cts.Token);
 
             this.FixedUpdateAsObservable()
-                .ThrottleFirstFrame(10)
+                .ThrottleFirstFrame(5)
                 .Subscribe(_ =>
                 {
                     _recentAcc.Enqueue(0);
