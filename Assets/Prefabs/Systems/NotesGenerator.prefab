@@ -835,6 +835,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPosParent: {fileID: 1089958191}
+  firstHalf: {fileID: 8300000, guid: 0d157a3630f71bf42af7a88810c119fb, type: 3}
+  secondHalf: {fileID: 8300000, guid: 78aef50563092e944be8eb6b8b7b9b89, type: 3}
 --- !u!82 &8592298402661455810
 AudioSource:
   m_ObjectHideFlags: 0
@@ -845,7 +847,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 943612827e599c24d98f2176b850ce20, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 0.42
   m_Pitch: 1
