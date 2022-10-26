@@ -31,6 +31,9 @@ namespace Rhythm
         [SerializeField, Tooltip("子オブジェクトがスポナー")]
         private GameObject spawnPosParent;
 
+        [SerializeField] private AudioClip firstHalf;
+        [SerializeField] private AudioClip secondHalf;
+
         private List<Transform> _spawnPos;
         private Transform _prePos; // 重複防止用
         private Transform _center;
@@ -73,7 +76,7 @@ namespace Rhythm
         private VFXObjectPoolProvider _vfxProvider;
         private VFXObjectPool _vfxPool;
 
-        public static bool IsAudioPlay = false;
+        public static int PlayingAudioIndex = 0;
 
         private async void Awake()
         {
@@ -86,9 +89,10 @@ namespace Rhythm
             // オブジェクトプールを生成
             _vfxPool = _vfxProvider.Get(0);
 
-            ReadMusic("Noesis");
+            ReadMusic("YankeeDoodleFirst");
 
             // スタート条件
+            // サンドバッグを殴ったらスタートがいいかも
             await UniTask.WaitUntil(() => Input.GetKeyDown(KeyCode.Space) || OVRInput.GetDown(OVRInput.RawButton.A, OVRInput.Controller.RTouch),
                 cancellationToken: this.GetCancellationTokenOnDestroy());
 
@@ -97,8 +101,18 @@ namespace Rhythm
                 .AddTo(this);
 
             // 最初の空ノーツが判定ラインに来たら音楽を鳴らす
-            await UniTask.WaitUntil(() => IsAudioPlay, cancellationToken: this.GetCancellationTokenOnDestroy());
-            _audioSource.Play();
+            await UniTask.WaitUntil(() => PlayingAudioIndex == 1, cancellationToken: this.GetCancellationTokenOnDestroy());
+            _audioSource.PlayOneShot(firstHalf);
+
+            await UniTask.WaitUntil(() => _beatCount == _scoreNum.Length,
+                cancellationToken: this.GetCancellationTokenOnDestroy());
+            
+            await UniTask.Delay(TimeSpan.FromSeconds(3), cancellationToken: this.GetCancellationTokenOnDestroy());
+            INote.NowNoteNum = 0;
+            
+            ReadMusic("YankeeDoodleSecond");
+            await UniTask.WaitUntil(() => PlayingAudioIndex == 2, cancellationToken: this.GetCancellationTokenOnDestroy());
+            _audioSource.PlayOneShot(secondHalf);
         }
 
         /// <summary>
@@ -114,7 +128,11 @@ namespace Rhythm
             _scoreBlock = new int[inputJson.notes.Length];
             _BPM = inputJson.BPM;
             _LPB = inputJson.notes[0].LPB;
-            _offset = inputJson.offset * 0.0003f; // Offsetの単位がわからないから大体の値
+            _offset = inputJson.offset; 
+
+            // 変数の初期化
+            _nowTime = 0;
+            _beatCount = 0;
 
             for (int i = 0; i < inputJson.notes.Length; i++)
             {
