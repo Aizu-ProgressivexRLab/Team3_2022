@@ -86,7 +86,7 @@ namespace Rhythm
             // オブジェクトプールを生成
             _vfxPool = _vfxProvider.Get(0);
 
-            ReadMusic();
+            ReadMusic("Noesis");
 
             // スタート条件
             await UniTask.WaitUntil(() => Input.GetKeyDown(KeyCode.Space) || OVRInput.GetDown(OVRInput.RawButton.A, OVRInput.Controller.RTouch),
@@ -104,9 +104,9 @@ namespace Rhythm
         /// <summary>
         /// Jsonファイルを読み込む
         /// </summary>
-        private void ReadMusic()
+        private void ReadMusic(string fileName)
         {
-            string inputString = Resources.Load<TextAsset>("Noesis").ToString();
+            string inputString = Resources.Load<TextAsset>(fileName).ToString();
             InputJson inputJson = JsonUtility.FromJson<InputJson>(inputString);
 
             // 値を各変数に代入
