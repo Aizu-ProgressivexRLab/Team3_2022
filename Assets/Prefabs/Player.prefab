@@ -1103,7 +1103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0726f474377e08a4ba7c20eba2f645e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strength: 200
+  strength: 100
 --- !u!4 &9085088491236140915 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2171213830573669743, guid: 147d1c9973ca414409f5b8520504a601,
@@ -1256,7 +1256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0726f474377e08a4ba7c20eba2f645e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strength: 200
+  strength: 100
 --- !u!4 &7621243447946159919 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2171213830573669743, guid: 147d1c9973ca414409f5b8520504a601,
