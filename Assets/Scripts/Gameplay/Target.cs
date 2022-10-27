@@ -10,6 +10,7 @@ namespace Gameplay
       [SerializeField] private VisualEffect smoke;
       [SerializeField] private VisualEffect trail;
       [SerializeField] private AudioSource bgmSource;
+      [SerializeField] private GameObject makimono;
 
       private Rigidbody _rb;
       private Vector3 _initialPos;
@@ -30,6 +31,7 @@ namespace Gameplay
          trail.gameObject.SetActive(false);
       
          GameManager.Instance.Distance = (int)((transform.position - _initialPos).magnitude);
+         makimono.SetActive(true);
          
          bgmSource.Play();
       }
