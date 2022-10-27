@@ -66,11 +66,11 @@ namespace Rhythm
                 {
                     if (x.gameObject == GameManager.Instance.LeftHand)
                     {
-                        HandVibrator.Vibrate(OVRInput.Controller.LTouch, 0.1f, x.GetCancellationTokenOnDestroy());
+                        HandVibrator.Vibrate(OVRInput.Controller.LTouch, 0.1f, x.GetCancellationTokenOnDestroy(), 1f, 1f);
                     }
                     else if (x.gameObject == GameManager.Instance.RightHand)
                     {
-                        HandVibrator.Vibrate(OVRInput.Controller.RTouch, 0.1f, x.GetCancellationTokenOnDestroy());
+                        HandVibrator.Vibrate(OVRInput.Controller.RTouch, 0.1f, x.GetCancellationTokenOnDestroy(), 1f, 1f);
                     }
                     Hit();
                 }).AddTo(_cts.Token);

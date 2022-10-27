@@ -12,9 +12,9 @@ namespace System
         /// <param name="controller"></param>
         /// <param name="time">継続時間</param>
         /// <param name="cts"></param>
-        public static async void Vibrate(OVRInput.Controller controller, float time, CancellationToken cts)
+        public static async void Vibrate(OVRInput.Controller controller, float time, CancellationToken cts, float frequency = 0.5f, float amplitude = 0.5f)
         {
-            OVRInput.SetControllerVibration(0.1f, 0.1f, controller);
+            OVRInput.SetControllerVibration(frequency, amplitude, controller);
 
             await UniTask.Delay(TimeSpan.FromSeconds(time), cancellationToken: cts);
             
