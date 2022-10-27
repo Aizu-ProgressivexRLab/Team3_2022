@@ -131,9 +131,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   closeTime: 0.5
-  perfectRange: 0.1
-  greatRange: 0.15
-  goodRange: 0.2
+  perfectRange: 0.05
+  greatRange: 0.1
+  goodRange: 0.15
   badRange: 0.25
   perfectPoint: 3
   greatPoint: 2
