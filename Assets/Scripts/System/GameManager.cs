@@ -32,6 +32,7 @@ namespace System
         private void Awake()
         {
             _instance = this;
+            OVRManager.tiledMultiResLevel = OVRManager.TiledMultiResLevel.LMSHighTop;
 
             OnFinish.AddTo(this);
         }
