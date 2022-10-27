@@ -11,6 +11,9 @@ namespace System
 
         [SerializeField] private GameObject leftHand;
         [SerializeField] private GameObject rightHand;
+        
+        public int Distance { get; set; }
+        public int ArriveRoomNum { get; set; }
 
         public static GameManager Instance
         {

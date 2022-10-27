@@ -44,7 +44,8 @@ namespace System
             {
                 var n = (NotesController)vfxProvider.Get(0).Rent();
                 n.transform.position = transform.position;
-                n.Initialize(vfxProvider, bc++).Forget();
+                bc = INote.NowNoteNum;
+                n.Initialize(vfxProvider, bc).Forget();
 
                 await UniTask.Delay(TimeSpan.FromSeconds(2f), cancellationToken: _ctsOnDestroy);   
             }
@@ -56,8 +57,8 @@ namespace System
             {
                 var m = (MashNoteController)vfxProvider.Get(2).Rent();
                 m.transform.position = transform.position;
+                bc = INote.NowNoteNum;
                 m.Initialize(vfxProvider, bc, 3.0f).Forget();
-                bc += 2;
 
                 await UniTask.Delay(TimeSpan.FromSeconds(5f), cancellationToken: _ctsOnDestroy);   
             }
@@ -67,7 +68,8 @@ namespace System
             
             var c = (CriticalNotesController)vfxProvider.Get(3).Rent();
             c.transform.position = transform.position;
-            c.Initialize(vfxProvider, bc++).Forget();
+            bc = INote.NowNoteNum;
+            c.Initialize(vfxProvider, bc).Forget();
 
             // なんとなく間隔開けた
             await UniTask.Delay(TimeSpan.FromSeconds(10f), cancellationToken: _ctsOnDestroy);
