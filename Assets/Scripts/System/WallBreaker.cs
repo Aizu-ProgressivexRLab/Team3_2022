@@ -23,7 +23,7 @@ namespace System
             if (other.CompareTag("target"))
             {
                 Instantiate(smokePrefab, other.transform.position, Quaternion.identity);
-                gameObject.SetActive(false);
+                gameObject.GetComponent<MeshRenderer>().enabled = false;
                 leftWB.SetActive(false);
                 rightWB.SetActive(false);
                 
