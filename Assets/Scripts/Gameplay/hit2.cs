@@ -32,7 +32,7 @@ public class hit2 : MonoBehaviour
         {
             var multiply = Mathf.Clamp(Kasokudo * ScoreManager.Instance.Score * strength, 100f, 2000f);
             
-            collider.transform.parent.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.forward * multiply + Vector3.up * Mathf.Sqrt(multiply) * 0.5f);
+            collider.transform.parent.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.forward * multiply + Vector3.up * Mathf.Sqrt(multiply));
         }
     } 
     
