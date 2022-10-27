@@ -33,6 +33,8 @@ namespace Rhythm
         [SerializeField] private float greatMultiply = 1.5f;
         [SerializeField] private float goodMultiply = 1.2f;
         [SerializeField] private float badMultiply = 1.0f;
+
+        [SerializeField] private AudioClip hitSound;
         
         private GameObject _target;
 
@@ -115,6 +117,7 @@ namespace Rhythm
             
             WaitHitFX(_hitVFX = _poolProvider.Get(1).Rent(), 1f).Forget();
             _hitVFX.transform.position = transform.position;
+            DestroySoundManager.Play(hitSound);
             GameManager.Instance.OnFinish.OnNext(Unit.Default);
             GameManager.Instance.OnFinish.OnCompleted();
 

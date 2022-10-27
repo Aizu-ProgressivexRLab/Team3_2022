@@ -151,8 +151,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76f4ea30e508a164c9f97fb835651a51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreManager: {fileID: 7280257226586582225, guid: 39b7e548f0e03964a89d78afb644b852,
-    type: 3}
   id: 3
   closeTime: 3.5556
   perfectRange: 0.2
@@ -163,6 +161,7 @@ MonoBehaviour:
   greatMultiply: 1.5
   goodMultiply: 1.2
   badMultiply: 1
+  hitSound: {fileID: 8300000, guid: ef17fdffe9612234fa410b82aa238d91, type: 3}
 --- !u!135 &3441034877755245530
 SphereCollider:
   m_ObjectHideFlags: 0
