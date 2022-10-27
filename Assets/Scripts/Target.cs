@@ -11,10 +11,12 @@ public class Target : MonoBehaviour
    [SerializeField] private VisualEffect trail;
 
    private Rigidbody _rb;
+   private Vector3 _initialPos;
 
    private async void Start()
    {
       _rb = GetComponent<Rigidbody>();
+      _initialPos = transform.position;
       
       await GameManager.Instance.OnFinish.ToUniTask(cancellationToken: this.GetCancellationTokenOnDestroy());
       
@@ -25,5 +27,7 @@ public class Target : MonoBehaviour
       
       smoke.SendEvent("OnStop");
       trail.gameObject.SetActive(false);
+      
+      GameManager.Instance.Distance = (int)((transform.position - _initialPos).magnitude);
    }
 }

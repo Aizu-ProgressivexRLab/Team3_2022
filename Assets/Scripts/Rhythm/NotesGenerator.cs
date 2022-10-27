@@ -34,6 +34,8 @@ namespace Rhythm
         [SerializeField] private AudioClip firstHalf;
         [SerializeField] private AudioClip secondHalf;
 
+        [SerializeField] private GameObject startButton;
+
         private List<Transform> _spawnPos;
         private Transform _prePos; // 重複防止用
         private Transform _center;
@@ -93,8 +95,12 @@ namespace Rhythm
 
             // スタート条件
             // サンドバッグを殴ったらスタートがいいかも
-            await UniTask.WaitUntil(() => Input.GetKeyDown(KeyCode.Space) || OVRInput.GetDown(OVRInput.RawButton.A, OVRInput.Controller.RTouch),
-                cancellationToken: this.GetCancellationTokenOnDestroy());
+            await startButton.OnTriggerEnterAsObservable().Where(x => x.CompareTag("Hand"))
+                .ToUniTask(true);
+            startButton.SetActive(false);
+            var hit = _vfxProvider.Get(1).Rent();
+            await UniTask.Delay(TimeSpan.FromSeconds(1f), cancellationToken: this.GetCancellationTokenOnDestroy());
+            _vfxProvider.Get(1).Return(hit);
 
             this.FixedUpdateAsObservable()
                 .Subscribe(_ => GenerateNotes())
