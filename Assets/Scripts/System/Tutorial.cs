@@ -13,12 +13,20 @@ namespace System
 
         private CancellationToken _ctsOnDestroy;
         private VFXBase _hitFX;
-        
+
+        private AudioSource _audioSource;
+
+        private void Start()
+        {
+            _audioSource = GetComponent<AudioSource>();
+        }
+
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Hand"))
             {
                 GameStart();
+                _audioSource.Stop();
             }
         }
 

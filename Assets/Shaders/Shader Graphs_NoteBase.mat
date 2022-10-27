@@ -60,10 +60,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Alpha: 1.63
+    - _Alpha: 1.42
     - _CenterImageSize: -1.93
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _Color: {r: 0, g: 1, b: 0.9606447, a: 1}
+    - _Color: {r: 0, g: 1, b: 0.96078444, a: 1}
   m_BuildTextureStacks: []
