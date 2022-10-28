@@ -2,6 +2,8 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using ObjectPool;
 using Rhythm;
+using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Video;
@@ -32,6 +34,18 @@ namespace System
         {
             _audioSource = GetComponent<AudioSource>();
             _audioSource.clip = bgm;
+            
+            var mouseDownStream = this.UpdateAsObservable().Where(_ => OVRInput.GetDown(OVRInput.Button.Start));
+            var mouseUpStream = this.UpdateAsObservable().Where(_ => OVRInput.GetUp(OVRInput.Button.Start));
+
+            //長押しの判定
+            //マウスクリックされたら3秒後にOnNextを流す
+            mouseDownStream
+                .SelectMany(_ => Observable.Timer(TimeSpan.FromSeconds(3)))
+                //途中でMouseUpされたらストリームをリセット
+                .TakeUntil(mouseUpStream)
+                .RepeatUntilDestroy(this.gameObject)
+                .Subscribe(_ => SceneManager.LoadScene("Scenes/MainScene")).AddTo(this);
         }
 
         private void OnTriggerEnter(Collider other)
