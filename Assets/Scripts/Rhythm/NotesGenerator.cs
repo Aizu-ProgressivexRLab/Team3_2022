@@ -91,6 +91,7 @@ namespace Rhythm
             // オブジェクトプールを生成
             _vfxPool = _vfxProvider.Get(0);
 
+            PlayingAudioIndex = 0;
             ReadMusic("YankeeDoodleFirst");
 
             // スタート条件

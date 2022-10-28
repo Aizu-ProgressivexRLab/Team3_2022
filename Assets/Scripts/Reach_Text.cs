@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Reach_Text : MonoBehaviour{
 
-    public int reach = 0;
+    public int reach = 1;
 
     // Start is called before the first frame update
     void Start()

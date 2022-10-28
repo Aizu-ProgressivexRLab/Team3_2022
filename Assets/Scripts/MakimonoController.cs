@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using Rhythm;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -36,9 +37,10 @@ public class MakimonoController : MonoBehaviour
 
         await UniTask.Delay(TimeSpan.FromSeconds(1f), cancellationToken: this.GetCancellationTokenOnDestroy());
 
-        await UniTask.WaitUntil(() => OVRInput.GetDown(OVRInput.Button.Start),
+        await UniTask.WaitUntil(() => OVRInput.GetDown(OVRInput.Button.One),
             cancellationToken: this.GetCancellationTokenOnDestroy());
 
+        INote.NowNoteNum = 0;
         SceneManager.LoadScene("Scenes/opening");
     }
 }

@@ -35,8 +35,8 @@ namespace System
             _audioSource = GetComponent<AudioSource>();
             _audioSource.clip = bgm;
             
-            var mouseDownStream = this.UpdateAsObservable().Where(_ => OVRInput.GetDown(OVRInput.Button.Start));
-            var mouseUpStream = this.UpdateAsObservable().Where(_ => OVRInput.GetUp(OVRInput.Button.Start));
+            var mouseDownStream = this.UpdateAsObservable().Where(_ => OVRInput.GetDown(OVRInput.Button.One));
+            var mouseUpStream = this.UpdateAsObservable().Where(_ => OVRInput.GetUp(OVRInput.Button.One));
 
             //長押しの判定
             //マウスクリックされたら3秒後にOnNextを流す
@@ -45,7 +45,11 @@ namespace System
                 //途中でMouseUpされたらストリームをリセット
                 .TakeUntil(mouseUpStream)
                 .RepeatUntilDestroy(this.gameObject)
-                .Subscribe(_ => SceneManager.LoadScene("Scenes/MainScene")).AddTo(this);
+                .Subscribe(_ =>
+                {
+                    INote.NowNoteNum = 0;
+                    SceneManager.LoadScene("Scenes/MainScene");
+                }).AddTo(this);
         }
 
         private void OnTriggerEnter(Collider other)
@@ -148,10 +152,8 @@ namespace System
             // なんとなく間隔開けた
             await UniTask.Delay(TimeSpan.FromSeconds(10f), cancellationToken: _ctsOnDestroy);
 
-            SceneManager.LoadScene("Scenes/MainScene");
-
             INote.NowNoteNum = 0;
-
+            SceneManager.LoadScene("Scenes/MainScene");
         }
 
         private async void NoteLoop(CancellationToken ct)

@@ -13,7 +13,7 @@ namespace System
         [SerializeField] private GameObject rightHand;
         
         public int Distance { get; set; }
-        public int ArriveRoomNum { get; set; }
+        public int ArriveRoomNum { get; set; } = 1;
 
         public static GameManager Instance
         {
