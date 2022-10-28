@@ -77,7 +77,7 @@ namespace Rhythm
                     Hit();
                 }).AddTo(_cts.Token);
 
-            await UniTask.WaitUntil(() => _lifeTime >= closeTime + badRange, cancellationToken: _cts.Token);
+            await UniTask.WaitUntil(() => _lifeTime >= closeTime + greatRange, cancellationToken: _cts.Token);
 
             // 時間切れ 
             Finish();
@@ -117,6 +117,7 @@ namespace Rhythm
             {
                 ScoreManager.Instance.Score = (int)(ScoreManager.Instance.Score * badMultiply);
                 Debug.Log("Bad" + INote.NowNoteNum);
+                Finish();
             }
             
             WaitHitFX(_hitVFX = _poolProvider.Get(1).Rent(), 1f).Forget();
