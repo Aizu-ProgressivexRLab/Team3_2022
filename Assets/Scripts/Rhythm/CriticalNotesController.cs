@@ -77,7 +77,7 @@ namespace Rhythm
                     Hit();
                 }).AddTo(_cts.Token);
 
-            await GameManager.Instance.OnFinish.ToUniTask(cancellationToken: _cts.Token);
+            await UniTask.WaitUntil(() => _lifeTime >= closeTime + badRange, cancellationToken: _cts.Token);
 
             // 時間切れ 
             Finish();
@@ -94,19 +94,23 @@ namespace Rhythm
         private void Hit()
         {
             var diff = Math.Abs(_lifeTime - closeTime);
+            int colorIndex = -1;
             if (diff <= perfectRange)
             {
                 ScoreManager.Instance.Score = (int)(ScoreManager.Instance.Score * perfectMultiply);
+                colorIndex = 0;
                 Debug.Log("Perfect" + INote.NowNoteNum);
             }
             else if (diff <= greatRange)
             {
                 ScoreManager.Instance.Score = (int)(ScoreManager.Instance.Score * greatMultiply);
+                colorIndex = 1;
                 Debug.Log("Great" + INote.NowNoteNum);
             }
             else if (diff <= goodRange)
             {
                 ScoreManager.Instance.Score = (int)(ScoreManager.Instance.Score * goodMultiply);
+                colorIndex = 2;
                 Debug.Log("Good" + INote.NowNoteNum);
             }
             else
@@ -117,6 +121,7 @@ namespace Rhythm
             
             WaitHitFX(_hitVFX = _poolProvider.Get(1).Rent(), 1f).Forget();
             _hitVFX.transform.position = transform.position;
+            _hitVFX.gameObject.GetComponent<VisualEffect>().SetInt("Index", colorIndex);
             DestroySoundManager.Play(hitSound);
             GameManager.Instance.OnFinish.OnNext(Unit.Default);
             GameManager.Instance.OnFinish.OnCompleted();
