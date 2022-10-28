@@ -131,10 +131,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe723299809f8da4ab32ac743530be30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreManager: {fileID: 7280257226586582225, guid: 39b7e548f0e03964a89d78afb644b852,
-    type: 3}
   id: 2
   closeTime: 0.5
+  scoreMultiply: 10
   hitSE: {fileID: 8300000, guid: 09b9f616ac603d24286283f2a8938a77, type: 3}
 --- !u!65 &183397075895188045
 BoxCollider:

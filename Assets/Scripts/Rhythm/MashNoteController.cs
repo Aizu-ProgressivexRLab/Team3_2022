@@ -16,6 +16,8 @@ namespace Rhythm
         [SerializeField, Tooltip("リングが閉じるまでの時間")]
         private float closeTime;
 
+        [SerializeField] private float scoreMultiply;
+
         [SerializeField] private AudioClip hitSE;
         
         private hit2 _leftHand;
@@ -105,8 +107,8 @@ namespace Rhythm
             //               OVRInput.GetLocalControllerAcceleration(_rightHand).magnitude;
 
             var score = _leftHand.Acceleration + _rightHand.Acceleration;
-            
-            _totalScore += score;
+
+            _totalScore += score * scoreMultiply;
             _recentAcc.Enqueue(score);
             if (_recentAcc.Count % 5 == 0)
             {
@@ -126,6 +128,7 @@ namespace Rhythm
         private void Finish()
         {
             ScoreManager.Instance.Score += (int) _totalScore;
+            Debug.Log(_totalScore);
             _vfx.SetFloat("CrackColorExposure", 0);
             _vfx.SetFloat("CrackExposure", 0);
             _recentAcc.Clear();
