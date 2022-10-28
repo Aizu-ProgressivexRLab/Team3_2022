@@ -22,7 +22,6 @@ namespace System
                 if (_instance == null)
                 {
                     _instance = new GameObject("GameManager").AddComponent<GameManager>();
-                    DontDestroyOnLoad(_instance);
                 }
 
                 return _instance;

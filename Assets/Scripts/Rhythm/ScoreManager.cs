@@ -23,7 +23,6 @@ namespace Rhythm
                 if (_instance == null)
                 {
                     _instance = new GameObject("SceneManager").AddComponent<ScoreManager>();
-                    DontDestroyOnLoad(_instance);
                 }
 
                 return _instance;
