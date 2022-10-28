@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Reach_Text : MonoBehaviour{
 
-    public int reach = 0;
+    public int reach = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -14,7 +14,7 @@ public class Reach_Text : MonoBehaviour{
     }
 
     // Update is called once per frame
-    void Update()
+    public void WriteReach()
     {
         this.GetComponent<Text>().text = "M " + reach.ToString();
     }

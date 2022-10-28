@@ -13,7 +13,9 @@ namespace System
         [SerializeField] private GameObject rightHand;
         
         public int Distance { get; set; }
-        public int ArriveRoomNum { get; set; }
+        public int ArriveRoomNum { get; set; } = 1;
+
+        public static float DeltaHeight = 0;
 
         public static GameManager Instance
         {
@@ -22,7 +24,6 @@ namespace System
                 if (_instance == null)
                 {
                     _instance = new GameObject("GameManager").AddComponent<GameManager>();
-                    DontDestroyOnLoad(_instance);
                 }
 
                 return _instance;

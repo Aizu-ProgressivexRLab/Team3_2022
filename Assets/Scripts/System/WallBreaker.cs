@@ -32,8 +32,6 @@ namespace System
                 _audioSource.PlayOneShot(explodeSE);
 
                 GameManager.Instance.ArriveRoomNum = roomNum + 1;
-                Debug.Log("M" + GameManager.Instance.ArriveRoomNum + "教室に到達");
-                Debug.Log("飛距離：" + GameManager.Instance.Distance);
             }
         }
     }

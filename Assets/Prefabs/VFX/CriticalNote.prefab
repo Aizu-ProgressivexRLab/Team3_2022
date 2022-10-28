@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8563045700538244241}
   - component: {fileID: 6027829403414525636}
   - component: {fileID: 1393938092049872289}
-  - component: {fileID: 3441034877755245530}
+  - component: {fileID: 900782223468631858}
   m_Layer: 0
   m_Name: CriticalNote
   m_TagString: Untagged
@@ -72,6 +72,9 @@ VisualEffect:
         m_Overridden: 1
       - m_Value: 3.5556
         m_Name: CloseTime
+        m_Overridden: 1
+      - m_Value: 1.13
+        m_Name: RootScale
         m_Overridden: 1
     m_Vector2f:
       m_Array: []
@@ -162,8 +165,8 @@ MonoBehaviour:
   goodMultiply: 1.2
   badMultiply: 1
   hitSound: {fileID: 8300000, guid: ef17fdffe9612234fa410b82aa238d91, type: 3}
---- !u!135 &3441034877755245530
-SphereCollider:
+--- !u!65 &900782223468631858
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -173,5 +176,5 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.43107045, y: 0.398584, z: 0.3387041}
+  m_Center: {x: -0.0058192015, y: 0.019607723, z: 0.086921215}
