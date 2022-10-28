@@ -24,6 +24,9 @@ namespace System
 
         [SerializeField] private VideoPlayer videoPlayer;
 
+        [SerializeField] private Transform eye;
+        private float _baseHeight = 1.525f;
+
 
         private CancellationToken _ctsOnDestroy;
         private VFXBase _hitFX;
@@ -57,6 +60,8 @@ namespace System
             if (other.CompareTag("Hand"))
             {
                 GameStart();
+                GameManager.DeltaHeight = eye.position.y - _baseHeight;
+                this.transform.position += Vector3.up * GameManager.DeltaHeight;
             }
         }
 
@@ -74,8 +79,8 @@ namespace System
 
             await UniTask.Delay(TimeSpan.FromSeconds(firstVideo.length), cancellationToken: _ctsOnDestroy);
 
-            TutorialFlow();
             _ctsOnDestroy = this.GetCancellationTokenOnDestroy();
+            TutorialFlow();
         }
 
         private async void TutorialFlow()

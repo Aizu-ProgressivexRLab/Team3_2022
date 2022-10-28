@@ -24,10 +24,12 @@ public class MakimonoController : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
         _animator = GetComponent<Animator>();
 
-        await UniTask.Delay(TimeSpan.FromSeconds(1f), cancellationToken: this.GetCancellationTokenOnDestroy());
+        await UniTask.Delay(TimeSpan.FromSeconds(2f), cancellationToken: this.GetCancellationTokenOnDestroy());
 
         _scoreText.score = GameManager.Instance.Distance;
         _reachText.reach = GameManager.Instance.ArriveRoomNum;
+        _scoreText.WriteScore();
+        _reachText.WriteReach();
         _audioSource.PlayOneShot(displaySound);
 
         await UniTask.Delay(TimeSpan.FromSeconds(0.5f), cancellationToken: this.GetCancellationTokenOnDestroy());
@@ -42,5 +44,7 @@ public class MakimonoController : MonoBehaviour
 
         INote.NowNoteNum = 0;
         SceneManager.LoadScene("Scenes/opening");
+
+        GameManager.DeltaHeight = 0;
     }
 }

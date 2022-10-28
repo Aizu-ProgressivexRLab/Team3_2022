@@ -15,6 +15,8 @@ namespace System
         public int Distance { get; set; }
         public int ArriveRoomNum { get; set; } = 1;
 
+        public static float DeltaHeight = 0;
+
         public static GameManager Instance
         {
             get

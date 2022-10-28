@@ -1232,6 +1232,11 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 64e4753fce546254c890f9612e1ce21e, type: 3}
     - target: {fileID: 3189908447182136001, guid: 490b3a632601b6d4b911b939790ee5c1,
         type: 3}
+      propertyPath: eye
+      value: 
+      objectReference: {fileID: 1277760991}
+    - target: {fileID: 3189908447182136001, guid: 490b3a632601b6d4b911b939790ee5c1,
+        type: 3}
       propertyPath: mashVideo
       value: 
       objectReference: {fileID: 32900000, guid: 643dd8b9ad4ad744b92ab6bdf9d4a45a,
@@ -1512,6 +1517,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68efb02e9a2c29d43abec70209acef2b, type: 3}
+--- !u!4 &1277760991 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4091530251995798853, guid: 68efb02e9a2c29d43abec70209acef2b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1277760990}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1288430009
 GameObject:
   m_ObjectHideFlags: 0

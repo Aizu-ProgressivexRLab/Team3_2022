@@ -14,7 +14,7 @@ public class Reach_Text : MonoBehaviour{
     }
 
     // Update is called once per frame
-    void Update()
+    public void WriteReach()
     {
         this.GetComponent<Text>().text = "M " + reach.ToString();
     }

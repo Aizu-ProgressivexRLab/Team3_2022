@@ -85,6 +85,8 @@ namespace Rhythm
             _audioSource = GetComponent<AudioSource>();
             _vfxProvider = GetComponent<VFXObjectPoolProvider>();
 
+            transform.position += Vector3.up * GameManager.DeltaHeight;
+
             _spawnPos = spawnPosParent.GetComponentsInChildren<Transform>().Skip(1).ToList();
             _center = _spawnPos.Where(x => x.name == "Center").Select(x => x.transform).First();
 
