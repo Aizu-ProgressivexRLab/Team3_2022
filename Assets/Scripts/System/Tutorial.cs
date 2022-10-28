@@ -38,8 +38,8 @@ namespace System
             _audioSource = GetComponent<AudioSource>();
             _audioSource.clip = bgm;
 
-            var mouseDownStream = this.UpdateAsObservable().Where(_ => OVRInput.GetDown(OVRInput.Button.One));
-            var mouseUpStream = this.UpdateAsObservable().Where(_ => OVRInput.GetUp(OVRInput.Button.One));
+            var mouseDownStream = this.UpdateAsObservable().Where(_ => OVRInput.GetDown(OVRInput.Button.Start));
+            var mouseUpStream = this.UpdateAsObservable().Where(_ => OVRInput.GetUp(OVRInput.Button.Start));
 
             //長押しの判定
             //マウスクリックされたら3秒後にOnNextを流す
