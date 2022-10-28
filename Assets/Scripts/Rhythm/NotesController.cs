@@ -34,6 +34,8 @@ namespace Rhythm
         private CancellationTokenSource _cts;
         private VFXBase _hitVFX;
 
+        public float CloseTime => closeTime;
+
         // 出現
         public async UniTaskVoid Initialize(VFXObjectPoolProvider pool, int beatCount, float length = 1f)
         {
