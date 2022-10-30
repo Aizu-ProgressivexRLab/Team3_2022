@@ -70,7 +70,7 @@ VisualEffect:
       - m_Value: 16
         m_Name: Rate
         m_Overridden: 1
-      - m_Value: 3.5556
+      - m_Value: 2.6667
         m_Name: CloseTime
         m_Overridden: 1
       - m_Value: 1.13
@@ -155,10 +155,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 3
-  closeTime: 3.5556
-  perfectRange: 0.2
-  greatRange: 0.4
-  goodRange: 0.8
+  closeTime: 2.6667
+  perfectRange: 0.08
+  greatRange: 0.16
+  goodRange: 0.32
   badRange: 1
   perfectMultiply: 2
   greatMultiply: 1.8

@@ -132,8 +132,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 2
-  closeTime: 0.5
-  scoreMultiply: 10
+  closeTime: 1
+  scoreMultiply: 5
   hitSE: {fileID: 8300000, guid: 09b9f616ac603d24286283f2a8938a77, type: 3}
 --- !u!65 &183397075895188045
 BoxCollider:

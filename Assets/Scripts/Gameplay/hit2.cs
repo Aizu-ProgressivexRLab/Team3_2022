@@ -30,7 +30,8 @@ public class hit2 : MonoBehaviour
     {
         if (collider.CompareTag("target"))
         {
-            var multiply = Mathf.Clamp(Kasokudo * ScoreManager.Instance.Score * strength, 1000f, 2000f);
+            var multiply = Mathf.Clamp(Kasokudo * 1000 + ScoreManager.Instance.Score * 10, 1000f, 2250f);
+            Debug.Log($"A = {Kasokudo}, S = {ScoreManager.Instance.Score}");
 
             collider.transform.parent.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.forward * multiply + Vector3.up * Mathf.Sqrt(multiply));
         }

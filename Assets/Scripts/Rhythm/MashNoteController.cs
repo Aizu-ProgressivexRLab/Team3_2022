@@ -52,7 +52,7 @@ namespace Rhythm
             _totalScore = 0;
 
             // 前のノーツが消えるまで待つ
-            await UniTask.WaitUntil(() => INote.NowNoteNum == beatCount, cancellationToken: _cts.Token);
+            await UniTask.Delay(TimeSpan.FromSeconds(closeTime), cancellationToken: _cts.Token);
 
             _collider.enabled = true;
             this.OnTriggerEnterAsObservable()
@@ -109,13 +109,14 @@ namespace Rhythm
             var score = _leftHand.Acceleration + _rightHand.Acceleration;
 
             _totalScore += score * scoreMultiply;
+            Debug.Log(_totalScore);
             _recentAcc.Enqueue(score);
             if (_recentAcc.Count % 5 == 0)
             {
                 _recentAcc.Dequeue();
             }
             // _crackShader.material.SetFloat("_Exposure", _totalScore * 1 / (0.78f * _length));
-            _vfx.SetFloat("CrackExposure", _totalScore * 1 / (0.78f * _length));
+            _vfx.SetFloat("CrackExposure", _totalScore * 1 / (3.91f * _length));
 
             //WaitHitFX(_poolProvider.Get(4).Rent(), 1f).Forget();
             
@@ -128,7 +129,6 @@ namespace Rhythm
         private void Finish()
         {
             ScoreManager.Instance.Score += (int) _totalScore;
-            Debug.Log(_totalScore);
             _vfx.SetFloat("CrackColorExposure", 0);
             _vfx.SetFloat("CrackExposure", 0);
             _recentAcc.Clear();

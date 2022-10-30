@@ -47,7 +47,8 @@ namespace Rhythm
             _lifeTime = 0;
 
             // 前のノーツが消えるまで待つ
-            await UniTask.WaitUntil(() => INote.NowNoteNum == beatCount, cancellationToken: _cts.Token);
+            await UniTask.WhenAll(UniTask.WaitUntil(() => INote.NowNoteNum == beatCount, cancellationToken: _cts.Token),
+                UniTask.Delay(TimeSpan.FromSeconds(0.05f), cancellationToken: _cts.Token));
 
             _collider.enabled = true;
             this.OnTriggerEnterAsObservable()
