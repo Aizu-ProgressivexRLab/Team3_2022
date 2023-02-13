@@ -43,7 +43,7 @@ namespace Gameplay
          await GameManager.Instance.OnFinish.ToUniTask(cancellationToken: this.GetCancellationTokenOnDestroy());
       
          smoke.SendEvent("OnPlay");
-         trail.SendEvent("OnPlay");
+         //trail.SendEvent("OnPlay");
 
          await UniTask.Delay(TimeSpan.FromSeconds(6f), cancellationToken: this.GetCancellationTokenOnDestroy());
       

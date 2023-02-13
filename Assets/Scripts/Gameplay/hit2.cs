@@ -13,8 +13,9 @@ public class hit2 : MonoBehaviour
     private Vector3 preposition;
     private float Kasokudo;
     [SerializeField] private float strength = 10;
-    
-        void Start()
+    [SerializeField] private JointController _jointController;
+
+    void Start()
     {
         
     }
@@ -26,12 +27,14 @@ public class hit2 : MonoBehaviour
        preposition = transform.position;
     }
 
-    void OnTriggerEnter(Collider collider)
+    async void OnTriggerEnter(Collider collider)
     {
         if (collider.CompareTag("target"))
         {
-            var multiply = Mathf.Clamp(Kasokudo * 1000 + ScoreManager.Instance.Score * 10, 1000f, 2250f);
-            Debug.Log($"A = {Kasokudo}, S = {ScoreManager.Instance.Score}");
+            var multiply = Mathf.Clamp(Kasokudo * 1000 + ScoreManager.Instance.Score * 10, 400, 2250f);
+            Debug.Log($"A = {Kasokudo}, S = {ScoreManager.Instance.Score}, Multiply = {multiply}");
+            
+            _jointController.Remove();
 
             collider.transform.parent.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.forward * multiply + Vector3.up * Mathf.Sqrt(multiply));
         }

@@ -11,9 +11,10 @@ public class JointController : MonoBehaviour
     private async void Start()
     {
         _joint = GetComponent<HingeJoint>();
+    }
 
-        await GameManager.Instance.OnFinish.ToUniTask(cancellationToken: this.GetCancellationTokenOnDestroy());
-
+    public void Remove()
+    {
         _joint.breakForce = 10;
     }
 }
