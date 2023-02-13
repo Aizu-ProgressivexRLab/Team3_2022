@@ -130,10 +130,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
-  closeTime: 0.5
-  perfectRange: 0.05
-  greatRange: 0.1
-  goodRange: 0.15
+  closeTime: 1
+  perfectRange: 0.06
+  greatRange: 0.12
+  goodRange: 0.18
   badRange: 0.25
   perfectPoint: 3
   greatPoint: 2

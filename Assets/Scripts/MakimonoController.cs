@@ -39,7 +39,7 @@ public class MakimonoController : MonoBehaviour
 
         await UniTask.Delay(TimeSpan.FromSeconds(1f), cancellationToken: this.GetCancellationTokenOnDestroy());
 
-        await UniTask.WaitUntil(() => OVRInput.GetDown(OVRInput.Button.One),
+        await UniTask.WaitUntil(() => OVRInput.GetDown(OVRInput.Button.Start),
             cancellationToken: this.GetCancellationTokenOnDestroy());
 
         INote.NowNoteNum = 0;

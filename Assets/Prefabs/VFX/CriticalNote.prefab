@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8563045700538244241}
   - component: {fileID: 6027829403414525636}
   - component: {fileID: 1393938092049872289}
-  - component: {fileID: 900782223468631858}
+  - component: {fileID: 3246629244608735296}
   m_Layer: 0
   m_Name: CriticalNote
   m_TagString: Untagged
@@ -70,7 +70,7 @@ VisualEffect:
       - m_Value: 16
         m_Name: Rate
         m_Overridden: 1
-      - m_Value: 3.5556
+      - m_Value: 2.6667
         m_Name: CloseTime
         m_Overridden: 1
       - m_Value: 1.13
@@ -155,18 +155,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 3
-  closeTime: 3.5556
-  perfectRange: 0.2
-  greatRange: 0.4
-  goodRange: 0.8
+  closeTime: 2.6667
+  perfectRange: 0.08
+  greatRange: 0.16
+  goodRange: 0.32
   badRange: 1
   perfectMultiply: 2
-  greatMultiply: 1.5
-  goodMultiply: 1.2
-  badMultiply: 1
+  greatMultiply: 1.8
+  goodMultiply: 1.6
+  badMultiply: 1.4
   hitSound: {fileID: 8300000, guid: ef17fdffe9612234fa410b82aa238d91, type: 3}
---- !u!65 &900782223468631858
-BoxCollider:
+--- !u!135 &3246629244608735296
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -176,5 +176,5 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.43107045, y: 0.398584, z: 0.3387041}
-  m_Center: {x: -0.0058192015, y: 0.019607723, z: 0.086921215}
+  m_Radius: 0.18
+  m_Center: {x: 0, y: 0, z: 0}

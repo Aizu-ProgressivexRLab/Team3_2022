@@ -77,10 +77,10 @@ namespace Rhythm
                     Hit();
                 }).AddTo(_cts.Token);
 
-            await UniTask.WaitUntil(() => _lifeTime >= closeTime + badRange, cancellationToken: _cts.Token);
+            //await UniTask.WaitUntil(() => _lifeTime >= closeTime + greatRange, cancellationToken: _cts.Token);
 
             // 時間切れ 
-            Finish();
+            //Finish();
         }
 
         private void FixedUpdate()
@@ -94,6 +94,7 @@ namespace Rhythm
         private void Hit()
         {
             var diff = Math.Abs(_lifeTime - closeTime);
+            Debug.Log(diff);
             int colorIndex = -1;
             if (diff <= perfectRange)
             {

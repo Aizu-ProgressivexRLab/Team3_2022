@@ -1,5 +1,8 @@
+using Rhythm;
 using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace System
 {
@@ -34,6 +37,8 @@ namespace System
         {
             _instance = this;
             OVRManager.tiledMultiResLevel = OVRManager.TiledMultiResLevel.LMSHighTop;
+
+            ScoreManager.Instance.Score = 0;
 
             OnFinish.AddTo(this);
         }

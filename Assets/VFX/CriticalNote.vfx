@@ -17,10 +17,10 @@ MonoBehaviour:
   categories: []
   uiBounds:
     serializedVersion: 2
-    x: -821
+    x: -794
     y: 74
-    width: 3562
-    height: 3467
+    width: 3533
+    height: 3461
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1023,7 +1023,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Gradient, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"colorKeys":[{"color":{"r":1.9020757675170899,"g":2.7936737537384035,"b":3.03143310546875,"a":1.0},"time":0.0},{"color":{"r":4.0,"g":0.2747103273868561,"b":0.2515718936920166,"a":1.0},"time":1.0}],"alphaKeys":[{"alpha":0.32549020648002627,"time":0.0},{"alpha":1.0,"time":0.5000076293945313},{"alpha":1.0,"time":1.0}],"gradientMode":0}'
+      m_SerializableObject: '{"colorKeys":[{"color":{"r":1.0,"g":1.0,"b":1.0,"a":1.0},"time":0.0},{"color":{"r":2.9960784912109377,"g":0.4967068135738373,"b":0.21960774064064027,"a":1.0},"time":0.5888609290122986}],"alphaKeys":[{"alpha":0.32549020648002627,"time":0.0},{"alpha":1.0,"time":0.27832457423210146},{"alpha":1.0,"time":1.0}],"gradientMode":0}'
     m_Space: 2147483647
   m_Property:
     name: Color
@@ -1248,13 +1248,6 @@ MonoBehaviour:
     position: {x: 456, y: 805}
     expandedSlots: []
     expanded: 1
-  - m_Id: 3
-    linkedSlots:
-    - outputSlot: {fileID: 8926484042661614602}
-      inputSlot: {fileID: 8926484042661615195}
-    position: {x: -821.3044, y: 2629.5654}
-    expandedSlots: []
-    expanded: 0
   - m_Id: 5
     linkedSlots:
     - outputSlot: {fileID: 8926484042661614602}
@@ -1297,7 +1290,6 @@ MonoBehaviour:
   m_Direction: 1
   m_LinkedSlots:
   - {fileID: 8926484042661614600}
-  - {fileID: 8926484042661615195}
   - {fileID: 8926484042661615266}
 --- !u!114 &8926484042661614603
 MonoBehaviour:
@@ -8145,7 +8137,6 @@ MonoBehaviour:
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 114350483966674976}
   m_Children:
-  - {fileID: 8926484042661615175}
   - {fileID: 8926484042661615213}
   - {fileID: 8926484042661615218}
   m_UIPosition: {x: -599.6173, y: 2451.0723}
@@ -8607,33 +8598,6 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
   m_Direction: 0
   m_LinkedSlots: []
---- !u!114 &8926484042661615175
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a971fa2e110a0ac42ac1d8dae408704b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_UIIgnoredErrors: []
-  m_Parent: {fileID: 8926484042661615149}
-  m_Children: []
-  m_UIPosition: {x: -1307.6173, y: 2394.0723}
-  m_UICollapsed: 0
-  m_UISuperCollapsed: 0
-  m_InputSlots:
-  - {fileID: 8926484042661615195}
-  m_OutputSlots: []
-  m_Disabled: 0
-  attribute: lifetime
-  Composition: 0
-  Source: 0
-  Random: 0
-  channels: 6
 --- !u!114 &8926484042661615178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8815,41 +8779,6 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
   m_Direction: 0
   m_LinkedSlots: []
---- !u!114 &8926484042661615195
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f780aa281814f9842a7c076d436932e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_UIIgnoredErrors: []
-  m_Parent: {fileID: 0}
-  m_Children: []
-  m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 1
-  m_UISuperCollapsed: 0
-  m_MasterSlot: {fileID: 8926484042661615195}
-  m_MasterData:
-    m_Owner: {fileID: 8926484042661615175}
-    m_Value:
-      m_Type:
-        m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
-          PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 1
-    m_Space: 2147483647
-  m_Property:
-    name: Lifetime
-    m_serializedType:
-      m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-  m_Direction: 0
-  m_LinkedSlots:
-  - {fileID: 8926484042661614602}
 --- !u!114 &8926484042661615206
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -38,8 +38,10 @@ namespace System
             _audioSource = GetComponent<AudioSource>();
             _audioSource.clip = bgm;
 
-            var mouseDownStream = this.UpdateAsObservable().Where(_ => OVRInput.GetDown(OVRInput.Button.One));
-            var mouseUpStream = this.UpdateAsObservable().Where(_ => OVRInput.GetUp(OVRInput.Button.One));
+            var mouseDownStream = this.UpdateAsObservable().Where(_ => OVRInput.GetDown(OVRInput.Button.Start));
+            var mouseUpStream = this.UpdateAsObservable().Where(_ => OVRInput.GetUp(OVRInput.Button.Start));
+
+            mouseDownStream.Subscribe(_ => this.GetComponent<Collider>().enabled = true).AddTo(this);
 
             //長押しの判定
             //マウスクリックされたら3秒後にOnNextを流す
@@ -99,7 +101,7 @@ namespace System
             _audioSource.clip = metronome;
             _audioSource.Play();
 
-            await UniTask.Delay(TimeSpan.FromSeconds(3.5f), cancellationToken: _ctsOnDestroy);
+            await UniTask.Delay(TimeSpan.FromSeconds(1f), cancellationToken: _ctsOnDestroy);
 
             CancellationTokenSource cts = new CancellationTokenSource();
             NoteLoop(cts.Token);
@@ -121,7 +123,7 @@ namespace System
             _audioSource.clip = metronome;
             _audioSource.Play();
 
-            await UniTask.Delay(TimeSpan.FromSeconds(3.5f), cancellationToken: _ctsOnDestroy);
+            await UniTask.Delay(TimeSpan.FromSeconds(1.0f), cancellationToken: _ctsOnDestroy);
 
             cts = new CancellationTokenSource();
             MashNoteLoop(cts.Token);
@@ -142,7 +144,7 @@ namespace System
             _audioSource.clip = metronome;
             _audioSource.Play();
 
-            await UniTask.Delay(TimeSpan.FromSeconds(2.4444f), cancellationToken: _ctsOnDestroy);
+            await UniTask.Delay(TimeSpan.FromSeconds(3.3333f), cancellationToken: _ctsOnDestroy);
 
             cts = new CancellationTokenSource();
             CriticalNoteLoop(cts.Token);
@@ -153,7 +155,7 @@ namespace System
             _audioSource.Stop();
 
             // なんとなく間隔開けた
-            await UniTask.Delay(TimeSpan.FromSeconds(10f), cancellationToken: _ctsOnDestroy);
+            await UniTask.Delay(TimeSpan.FromSeconds(5f), cancellationToken: _ctsOnDestroy);
 
             INote.NowNoteNum = 0;
             SceneManager.LoadScene("Scenes/MainScene");

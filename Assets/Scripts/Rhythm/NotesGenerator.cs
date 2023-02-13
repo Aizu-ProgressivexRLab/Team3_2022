@@ -131,7 +131,7 @@ namespace Rhythm
         {
             string inputString = Resources.Load<TextAsset>(fileName).ToString();
             InputJson inputJson = JsonUtility.FromJson<InputJson>(inputString);
-
+            
             // 値を各変数に代入
             _scoreNum = new int[inputJson.notes.Length];
             _scoreBlock = new int[inputJson.notes.Length];
@@ -153,7 +153,6 @@ namespace Rhythm
         private void GetScoreTime()
         {
             _nowTime += _moveSpan;
-
             if (_beatCount > _scoreNum.Length) return;
 
             _beatNum = (int) (_nowTime * _BPM / 60 * _LPB - _offset);
@@ -189,9 +188,7 @@ namespace Rhythm
                 }
                 else if (_scoreBlock[_beatCount] == 2)
                 {
-                    var note = _vfxProvider.Get(3).Rent();
-                    note.transform.position = _center.position;
-                    ((CriticalNotesController) note).Initialize(_vfxProvider, _beatCount).Forget();
+                    Critical().Forget();
                 }
                 else
                 {
@@ -216,6 +213,14 @@ namespace Rhythm
             _spawnPos.RemoveAt(rand);
 
             return _prePos.position;
+        }
+
+        private async UniTaskVoid Critical()
+        {
+            await UniTask.Delay(TimeSpan.FromSeconds(1), cancellationToken: this.GetCancellationTokenOnDestroy());
+            var note = _vfxProvider.Get(3).Rent();
+            note.transform.position = _center.position;
+            ((CriticalNotesController) note).Initialize(_vfxProvider, _beatCount).Forget();
         }
     }
 }

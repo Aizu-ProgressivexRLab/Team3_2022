@@ -16,6 +16,8 @@ namespace Rhythm
         [SerializeField, Tooltip("リングが閉じるまでの時間")]
         private float closeTime;
 
+        [SerializeField] private float scoreMultiply;
+
         [SerializeField] private AudioClip hitSE;
         
         private hit2 _leftHand;
@@ -50,7 +52,7 @@ namespace Rhythm
             _totalScore = 0;
 
             // 前のノーツが消えるまで待つ
-            await UniTask.WaitUntil(() => INote.NowNoteNum == beatCount, cancellationToken: _cts.Token);
+            await UniTask.Delay(TimeSpan.FromSeconds(closeTime), cancellationToken: _cts.Token);
 
             _collider.enabled = true;
             this.OnTriggerEnterAsObservable()
@@ -105,15 +107,16 @@ namespace Rhythm
             //               OVRInput.GetLocalControllerAcceleration(_rightHand).magnitude;
 
             var score = _leftHand.Acceleration + _rightHand.Acceleration;
-            
-            _totalScore += score;
+
+            _totalScore += score * scoreMultiply;
+            Debug.Log(_totalScore);
             _recentAcc.Enqueue(score);
             if (_recentAcc.Count % 5 == 0)
             {
                 _recentAcc.Dequeue();
             }
             // _crackShader.material.SetFloat("_Exposure", _totalScore * 1 / (0.78f * _length));
-            _vfx.SetFloat("CrackExposure", _totalScore * 1 / (0.78f * _length));
+            _vfx.SetFloat("CrackExposure", _totalScore * 1 / (3.91f * _length));
 
             //WaitHitFX(_poolProvider.Get(4).Rent(), 1f).Forget();
             
