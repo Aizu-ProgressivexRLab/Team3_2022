@@ -1369,6 +1369,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7551068176743203924, guid: 46a2711a4b806a64ca6200bbb37c41fd,
         type: 3}
+      propertyPath: m_TagString
+      value: target
+      objectReference: {fileID: 0}
+    - target: {fileID: 7551068176743203924, guid: 46a2711a4b806a64ca6200bbb37c41fd,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -1385,7 +1390,7 @@ PrefabInstance:
     - target: {fileID: 7551068176743203929, guid: 46a2711a4b806a64ca6200bbb37c41fd,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 7551068176743203929, guid: 46a2711a4b806a64ca6200bbb37c41fd,
         type: 3}
@@ -1491,25 +1496,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2, y: 6.155992, z: 2}
   m_Center: {x: 0, y: -0.29049763, z: 0.12}
---- !u!1 &618362773 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 870412406, guid: 46a2711a4b806a64ca6200bbb37c41fd,
-    type: 3}
-  m_PrefabInstance: {fileID: 618362769}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &618362774
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 618362773}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1.932821, y: 6.1800156, z: 3.0362594}
-  m_Center: {x: 0.026934624, y: 0.8706577, z: -0.06745239}
 --- !u!1 &623331083
 GameObject:
   m_ObjectHideFlags: 0
@@ -4174,6 +4160,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7270924683856034189, guid: 68efb02e9a2c29d43abec70209acef2b,
         type: 3}
+      propertyPath: _targetRb
+      value: 
+      objectReference: {fileID: 618362770}
+    - target: {fileID: 7270924683856034189, guid: 68efb02e9a2c29d43abec70209acef2b,
+        type: 3}
       propertyPath: _jointController
       value: 
       objectReference: {fileID: 1179664550}
@@ -4182,6 +4173,11 @@ PrefabInstance:
       propertyPath: strength
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 8538405197397920520, guid: 68efb02e9a2c29d43abec70209acef2b,
+        type: 3}
+      propertyPath: _targetRb
+      value: 
+      objectReference: {fileID: 618362770}
     - target: {fileID: 8538405197397920520, guid: 68efb02e9a2c29d43abec70209acef2b,
         type: 3}
       propertyPath: _jointController

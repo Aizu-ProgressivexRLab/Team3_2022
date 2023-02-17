@@ -14,6 +14,7 @@ public class hit2 : MonoBehaviour
     private float Kasokudo;
     [SerializeField] private float strength = 10;
     [SerializeField] private JointController _jointController;
+    [SerializeField] private Rigidbody _targetRb;
 
     void Start()
     {
@@ -27,16 +28,16 @@ public class hit2 : MonoBehaviour
        preposition = transform.position;
     }
 
-    async void OnTriggerEnter(Collider collider)
+    void OnTriggerEnter(Collider collider)
     {
-        if (collider.CompareTag("target"))
+        if (collider.CompareTag("last"))
         {
             var multiply = Mathf.Clamp(Kasokudo * 1000 + ScoreManager.Instance.Score * 10, 400, 2250f);
             Debug.Log($"A = {Kasokudo}, S = {ScoreManager.Instance.Score}, Multiply = {multiply}");
             
             _jointController.Remove();
 
-            collider.transform.parent.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.forward * multiply + Vector3.up * Mathf.Sqrt(multiply));
+            _targetRb.AddForce(Vector3.forward * multiply + Vector3.up * Mathf.Sqrt(multiply));
         }
     } 
     

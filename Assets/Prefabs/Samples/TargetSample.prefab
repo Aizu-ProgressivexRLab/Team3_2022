@@ -1,51 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &870412406
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 870412407}
-  - component: {fileID: 618362774}
-  m_Layer: 0
-  m_Name: TargetCollider
-  m_TagString: target
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &870412407
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 870412406}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.2, z: -0.52}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7551068176743203929}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &618362774
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 870412406}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  m_Radius: 0.77
-  m_Height: 0
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.68, z: 0.13}
 --- !u!1 &7551068176743203924
 GameObject:
   m_ObjectHideFlags: 0
@@ -81,7 +35,6 @@ Transform:
   m_Children:
   - {fileID: 6059548110901362759}
   - {fileID: 2682469279860543068}
-  - {fileID: 870412407}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -165,6 +118,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   smoke: {fileID: 2682469279860543069}
   trail: {fileID: 6059548110901362758}
+  bgmSource: {fileID: 0}
+  makimono: {fileID: 0}
 --- !u!136 &618362773
 CapsuleCollider:
   m_ObjectHideFlags: 0

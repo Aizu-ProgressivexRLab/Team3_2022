@@ -51,13 +51,8 @@ namespace Rhythm
             {
                 _poolProvider.Get(1).Return(_hitVFX);   
             }
-            _target = GameObject.FindWithTag("target");
-            if (_target != null)
-            {
-                _target.GetComponent<Collider>().enabled = true;   
-            }
 
-            await UniTask.Delay(TimeSpan.FromSeconds(closeTime / 3),
+            await UniTask.Delay(TimeSpan.FromSeconds(closeTime / 1.5f),
                 cancellationToken: this.GetCancellationTokenOnDestroy());
             
             _collider.enabled = true;
